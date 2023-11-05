@@ -35,8 +35,11 @@ for x in range(largeur):
 # Nom du fichier d'entrée sans l'extension
 nom_fichier_base, extension = os.path.splitext(os.path.basename(image_path))
 
+# Densite sans virgule
+str_densite = str(densite).replace(".", "")
+
 # Création du nouveau nom de fichier pour l'image de sortie
-nom_image_sortie = "../imgoutnoised/" + nom_fichier_base + "_poivre_et_sel.jpg"
+nom_image_sortie = "../imgoutnoised/" + nom_fichier_base + f"_poivre_et_sel_{str_densite}.jpg"
 
 # Enregistrement de l'image modifiée
 image.save(nom_image_sortie)

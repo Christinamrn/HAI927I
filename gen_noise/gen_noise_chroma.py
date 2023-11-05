@@ -40,7 +40,7 @@ for x in range(largeur):
 nom_fichier_base, extension = os.path.splitext(os.path.basename(image_path))
 
 # Création du nouveau nom de fichier pour l'image de sortie
-nom_image_sortie = "../imgoutnoised/" + nom_fichier_base + "_bruit_chromatique.jpg"
+nom_image_sortie = "../imgoutnoised/" + nom_fichier_base + f"_bruit_chromatique_{int(ecart_type)}.jpg"
 
 # Enregistrement de l'image modifiée
 image.save(nom_image_sortie)

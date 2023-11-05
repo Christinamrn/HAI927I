@@ -1,4 +1,4 @@
-from PIL import Image, ImageFilter
+from PIL import Image, ImageFilter, ImageChops
 import sys
 import os
 
@@ -12,8 +12,11 @@ image_path = sys.argv[1]
 # Ouverture de l'image
 image = Image.open(image_path)
 
-# Appliquer le filtre Laplacien pour accentuer les contours
-filtered_image = image.filter(ImageFilter.FIND_EDGES)
+# Générer le filtre Laplacien pour accentuer les contours
+laplacian_filter = image.filter(ImageFilter.FIND_EDGES)
+
+# Appliquer filtre
+filtered_image = ImageChops.add(image, laplacian_filter, scale=1.0, offset=0)
 
 # Nom du fichier d'entrée sans l'extension
 nom_fichier_base, extension = os.path.splitext(os.path.basename(image_path))
