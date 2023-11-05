@@ -6,6 +6,7 @@
 
 ## Comptes rendus 📝
 * [Compte rendu n°1](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Comptes%20Rendus/%5BHAI927I%5D%20Christal%20-%20CR1.pdf)
+* [Compte rendu n°2](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Comptes%20Rendus/%5BHAI927I%5D%20Christal%20-%20CR2.pdf)
 
 ## Fonctionnement du git ⚙️
 Voici comment est organisé le projet avec ses différents dossiers :
