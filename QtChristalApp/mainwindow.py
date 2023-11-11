@@ -3,10 +3,10 @@ import os
 from pathlib import Path
 import sys
 
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QWidget, QLabel, QDialog, QVBoxLayout, QHBoxLayout, QGridLayout, QProgressBar, QSpacerItem, QSizePolicy,QComboBox
-from PySide6.QtCore import QFile, QSize, Qt
+from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtGui import QIcon, QPixmap, QPalette, QColor, QFont, QFontDatabase
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
