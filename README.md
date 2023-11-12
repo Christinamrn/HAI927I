@@ -21,3 +21,6 @@ Voici comment est organisé le projet avec ses différents dossiers :
 * 📁 **filters** regroupe différents filtres à tester.
 
 * 📁 **imgoutdenoised** regroupe les images résultantes du débruitage.
+
+## Application Qt ⚙💻
+* 📁 **QtChristalApp** est le dossier contenant l'application que nous allons développer. Celle-ci reprend les concepts vu précédemment ainsi que les prochains ajouts sur une interface graphique. Celle-ci est destinée à un utilisateur lambda qui souhaiterait débruiter son image simplement par le biais de notre application. Nous utilisons QtCreator en version Python (QtPy).
