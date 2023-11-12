@@ -26,7 +26,7 @@ for x in range(largeur):
 
         # Application du bruit
         pixel = image.getpixel((x, y))
-        new_pixel = max(0, min(pixel + bruit, 255))  # Assurez-vous que la valeur reste dans la plage [0, 255]
+        new_pixel = max(0, min(pixel + bruit, 255)) 
         image.putpixel((x, y), new_pixel)
 
 # Nom du fichier d'entrée sans l'extension
