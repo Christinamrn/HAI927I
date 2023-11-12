@@ -1,8 +1,10 @@
 # This Python file uses the following encoding: utf-8
 import sys
+import os
 
-from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QFileDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QFileDialog, QDialog
 from PySide6.QtGui import QPixmap
+#from PyQt6.QtCore import QObject, pyqtSlot, Qt, QSize
 from PIL import Image
 from imageSettings import *
 from imageGenNoises import *
@@ -36,18 +38,25 @@ class MainWindow(QMainWindow):
         self.ui.bouton_ouvrirImgIn.clicked.connect(self.ouvrirImage)
 
         #Ne pas autoriser le changement d'état des boutons
-        self.ui.bouton_poivresel.setVisible(False)
-        self.ui.bouton_gaussien.setVisible(False)
-        self.ui.bouton_chromatique.setVisible(False)
+        #self.ui.bouton_poivresel.setVisible(False)
+        #self.ui.bouton_gaussien.setVisible(False)
+        #self.ui.bouton_chromatique.setVisible(False)
         self.ui.bouton_poivresel.setEnabled(False)
         self.ui.bouton_gaussien.setEnabled(False)
         self.ui.bouton_chromatique.setEnabled(False)
+        #self.ui.bouton_afficher.clicked.connect(lambda : self.affichageImageOut())
 
-
+    def affichageImageOut(self):
+        print("affichage...")
+        chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
+        print(chemin_dossier_temp)
+        pixmap = QPixmap(chemin_dossier_temp)
+        self.ui.label_ImgOut.setPixmap(pixmap)
+        self.ui.label_ImgIn.setScaledContents(True)
 
     def ouvrirImage(self):
         options = QFileDialog.Options()
-        fileName, _ = QFileDialog.getOpenFileName(self, "Sélectionner une image", "", "Images (*.png *.jpg *.jpeg *.gif *.bmp)", options=options)
+        fileName, _ = QFileDialog.getOpenFileName(self, "Sélectionner une image", "", "Images (*.jpg *.jpeg)", options=options)
         if fileName:
             #Affichage du chemin de l'image sur l'UI
             self.ui.labeltext_chemin.setText(fileName)
@@ -57,13 +66,8 @@ class MainWindow(QMainWindow):
             self.ui.label_ImgIn.setPixmap(pixmap)
             self.ui.label_ImgIn.setScaledContents(True)
             image = ouvrirImageIn(fileName)
-            ImageInSet = True
+            self.ImageInIsSet = True
             self.ImageNdg = IsNdg(image)
-
-            #Lien entre les boutons liés à "image" et les fonctions
-            #self.ui.bouton_poivresel.connect(bruit_poivre_et_sel)
-            #self.ui.bouton_gaussien.connect(bruit_gaussien)
-            self.ui.bouton_chromatique.clicked.connect(lambda : bruit_chromatique(image, self.ecart_type, self.ImageModified))
 
             #Si l'image d'origine existe
             if(self.ImageInIsSet):
@@ -74,13 +78,16 @@ class MainWindow(QMainWindow):
                     self.ui.bouton_chromatique.setVisible(True)
                     self.ui.bouton_chromatique.setEnabled(True)
 
-            if (self.ImageModified):
-                affichageImageOut
+            #Lien entre les boutons liés à "image" et les fonctions
+            self.ui.bouton_poivresel.clicked.connect(lambda : bruit_poivre_et_sel(image, self.densite, self))
+            self.ui.bouton_gaussien.clicked.connect(lambda : bruit_gaussien(image, self.ecart_type, self))
+            self.ui.bouton_chromatique.clicked.connect(lambda : bruit_chromatique(image, self.ecart_type, self))
 
-    def affichageImageOut(self):
-        chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
-        pixmap = QPixmap(chemin_dossier_temp)
-        self.ui.label_ImgOut.setPixmap(pixmap)
+
+            #if (self.ImageModified):
+            #    self.affichageImageOut(self)
+
+
 
 
 

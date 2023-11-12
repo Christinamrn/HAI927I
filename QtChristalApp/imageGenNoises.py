@@ -7,9 +7,8 @@ import sys
 import os
 import numpy as np
 
-
 # Bruit chromatique
-def bruit_chromatique(image, ecart_type, ImageModified):
+def bruit_chromatique(image, ecart_type, MainWindow):
     largeur, hauteur = image.size
 
     for x in range(largeur):
@@ -18,7 +17,7 @@ def bruit_chromatique(image, ecart_type, ImageModified):
             bruit_g = int(np.random.normal(0, ecart_type))
             bruit_b = int(np.random.normal(0, ecart_type))
             pixel = image.getpixel((x,y))
-            (r, g, b) = pixel
+            r, g, b = pixel
             new_r = max(0, min(r + bruit_r, 255))
             new_g = max(0, min(g + bruit_g, 255))
             new_b = max(0, min(b + bruit_b, 255))
@@ -26,12 +25,13 @@ def bruit_chromatique(image, ecart_type, ImageModified):
 
             image.putpixel((x, y), new_pixel)
     enregistrerImageTmp(image)
-    ImageModified = True
-    print(ImageModified)
+    MainWindow.ImageModified = True
+    print(MainWindow.ImageModified)
+    MainWindow.affichageImageOut()
 
 
 #Bruit gaussien
-def bruit_gaussien(image, ecart_type):
+def bruit_gaussien(image, ecart_type, MainWindow):
     largeur, hauteur = image.size
 
     for x in range(largeur):
@@ -41,10 +41,12 @@ def bruit_gaussien(image, ecart_type):
             new_pixel = max(0, min(pixel + bruit, 255))
             image.putpixel((x, y), new_pixel)
     enregistrerImageTmp(image)
-    ImageModified = True
+    MainWindow.ImageModified = True
+    MainWindow.affichageImageOut()
+
 
 #Bruit poivre et sel
-def bruit_poivre_et_sel(image, densite):
+def bruit_poivre_et_sel(image, densite, MainWindow):
     largeur, hauteur = image.size
 
     for x in range(largeur):
@@ -54,4 +56,5 @@ def bruit_poivre_et_sel(image, densite):
                 new_pixel = min(bruit, 255)
                 image.putpixel((x, y), new_pixel)
     enregistrerImageTmp(image)
-    ImageModified = True
+    MainWindow.ImageModified = True
+    MainWindow.affichageImageOut()

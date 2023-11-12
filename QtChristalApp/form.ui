@@ -22,24 +22,25 @@
     <height>1080</height>
    </size>
   </property>
-  <property name="font">
-   <font>
-    <family>Raleway Medium</family>
-   </font>
-  </property>
   <property name="windowTitle">
    <string>Christal</string>
   </property>
   <property name="autoFillBackground">
-   <bool>false</bool>
+   <bool>true</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: qlineargradient(spread:pad, x1:0.217, y1:0.943182, x2:0.792038, y2:0.017, stop:0 rgba(243, 231, 233, 255), stop:1 rgba(227, 238, 255, 255));</string>
+   <string notr="true"/>
+  </property>
+  <property name="animated">
+   <bool>true</bool>
   </property>
   <property name="tabShape">
    <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <widget class="QPushButton" name="bouton_ouvrirImgIn">
     <property name="geometry">
      <rect>
@@ -127,41 +128,10 @@
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="bouton_chromatique">
+   <widget class="QPushButton" name="bouton_poivresel">
     <property name="enabled">
      <bool>true</bool>
     </property>
-    <property name="geometry">
-     <rect>
-      <x>840</x>
-      <y>20</y>
-      <width>75</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="mouseTracking">
-     <bool>false</bool>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="text">
-     <string>Chromatique</string>
-    </property>
-    <property name="checkable">
-     <bool>false</bool>
-    </property>
-    <property name="autoDefault">
-     <bool>false</bool>
-    </property>
-    <property name="default">
-     <bool>false</bool>
-    </property>
-    <property name="flat">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="bouton_poivresel">
     <property name="geometry">
      <rect>
       <x>850</x>
@@ -187,6 +157,69 @@
      <string>Gaussien</string>
     </property>
    </widget>
+   <widget class="QLabel" name="background">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1920</width>
+      <height>1080</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>1920</width>
+      <height>1080</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>1920</width>
+      <height>1080</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0.217, y1:0.943182, x2:0.792038, y2:0.017, stop:0 rgba(243, 231, 233, 255), stop:1 rgba(227, 238, 255, 255));</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bouton_chromatique">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>20</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Chromatique</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bouton_afficher">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>150</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
+   <zorder>background</zorder>
+   <zorder>bouton_ouvrirImgIn</zorder>
+   <zorder>frame_ImgIn</zorder>
+   <zorder>labeltext_chemin</zorder>
+   <zorder>frame_ImgOut</zorder>
+   <zorder>bouton_poivresel</zorder>
+   <zorder>bouton_gaussien</zorder>
+   <zorder>bouton_chromatique</zorder>
+   <zorder>bouton_afficher</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
