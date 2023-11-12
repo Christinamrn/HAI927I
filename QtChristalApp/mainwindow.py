@@ -4,6 +4,7 @@ import os
 
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QFileDialog, QDialog
 from PySide6.QtGui import QPixmap
+from PySide6.QtCore import QObject, Slot, Qt, QSize
 #from PyQt6.QtCore import QObject, pyqtSlot, Qt, QSize
 from PIL import Image
 from imageSettings import *
@@ -51,8 +52,10 @@ class MainWindow(QMainWindow):
         chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
         print(chemin_dossier_temp)
         pixmap = QPixmap(chemin_dossier_temp)
+        cote = max(pixmap.width(), pixmap.height())
+        pixmap.scaled(cote, cote, aspectRatioMode=Qt.KeepAspectRatio)
         self.ui.label_ImgOut.setPixmap(pixmap)
-        self.ui.label_ImgIn.setScaledContents(True)
+        #self.ui.label_ImgOut.setScaledContents(True)
 
     def ouvrirImage(self):
         options = QFileDialog.Options()
@@ -63,13 +66,19 @@ class MainWindow(QMainWindow):
             #Conversion Image en QPixmap
             pixmap = QPixmap(fileName)
             #Affichage de l'image dans un label
+            largeur = self.ui.frame_ImgIn.width()
+            hauteur= self.ui.frame_ImgIn.height()
+            pixmap.scaled(largeur, hauteur, Qt.KeepAspectRatio, Qt.SmoothTransformation)
             self.ui.label_ImgIn.setPixmap(pixmap)
             self.ui.label_ImgIn.setScaledContents(True)
+
+            #Définition de l'image en PIL
             image = ouvrirImageIn(fileName)
+
             self.ImageInIsSet = True
             self.ImageNdg = IsNdg(image)
 
-            #Si l'image d'origine existe
+            #Si l'image d'origine est définie
             if(self.ImageInIsSet):
                 if(self.ImageNdg):
                     self.ui.bouton_poivresel.setEnabled(True)
@@ -82,11 +91,6 @@ class MainWindow(QMainWindow):
             self.ui.bouton_poivresel.clicked.connect(lambda : bruit_poivre_et_sel(image, self.densite, self))
             self.ui.bouton_gaussien.clicked.connect(lambda : bruit_gaussien(image, self.ecart_type, self))
             self.ui.bouton_chromatique.clicked.connect(lambda : bruit_chromatique(image, self.ecart_type, self))
-
-
-            #if (self.ImageModified):
-            #    self.affichageImageOut(self)
-
 
 
 
