@@ -61,7 +61,7 @@
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>210</y>
+      <y>420</y>
       <width>500</width>
       <height>500</height>
      </rect>
@@ -106,7 +106,7 @@
     <property name="geometry">
      <rect>
       <x>710</x>
-      <y>210</y>
+      <y>420</y>
       <width>500</width>
       <height>500</height>
      </rect>
@@ -120,7 +120,7 @@
     <widget class="QLabel" name="label_ImgOut">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>-10</x>
        <y>0</y>
        <width>500</width>
        <height>500</height>
@@ -133,35 +133,6 @@
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-   </widget>
-   <widget class="QPushButton" name="bouton_poivresel">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>720</x>
-      <y>100</y>
-      <width>75</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PoivreEtSel</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="bouton_gaussien">
-    <property name="geometry">
-     <rect>
-      <x>720</x>
-      <y>130</y>
-      <width>75</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Gaussien</string>
-    </property>
    </widget>
    <widget class="QLabel" name="background">
     <property name="geometry">
@@ -191,27 +162,180 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="bouton_chromatique">
+   <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>70</y>
-      <width>75</width>
-      <height>24</height>
+      <x>710</x>
+      <y>20</y>
+      <width>501</width>
+      <height>291</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Chromatique</string>
+    <property name="currentIndex">
+     <number>1</number>
     </property>
+    <widget class="QWidget" name="GenBruit">
+     <attribute name="title">
+      <string>Générateur de bruit</string>
+     </attribute>
+     <widget class="QPushButton" name="bouton_gaussien">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>100</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Gaussien</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bouton_poivresel">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>70</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PoivreEtSel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bouton_chromatique">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>40</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Chromatique</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Filtres">
+     <attribute name="title">
+      <string>Filtrages</string>
+     </attribute>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>220</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Valider</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>60</y>
+        <width>251</width>
+        <height>128</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QRadioButton" name="radioButton_5">
+           <property name="text">
+            <string>Filtrage </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton">
+           <property name="text">
+            <string>Filtrage Gaussien</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_2">
+           <property name="text">
+            <string>Filtrage Médian</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_3">
+           <property name="text">
+            <string>Filtrage Moyenneur</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton_4">
+         <property name="text">
+          <string>Filtrage Laplacien</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QSlider" name="slider_ecart_type">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>70</y>
+        <width>101</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QSlider" name="slider_var_couleur">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>110</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QSlider" name="slider_radius">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>150</y>
+        <width>101</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <zorder>background</zorder>
    <zorder>bouton_ouvrirImgIn</zorder>
    <zorder>frame_ImgIn</zorder>
    <zorder>labeltext_chemin</zorder>
    <zorder>frame_ImgOut</zorder>
-   <zorder>bouton_poivresel</zorder>
-   <zorder>bouton_gaussien</zorder>
-   <zorder>bouton_chromatique</zorder>
+   <zorder>tabWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -102,7 +102,7 @@ class MainWindow(QMainWindow):
             self.ui.bouton_gaussien.clicked.connect(lambda : bruit_gaussien(image, self.ecart_type, self))
             self.ui.bouton_chromatique.clicked.connect(lambda : bruit_chromatique(image, self.ecart_type, self))
 
-            self.ui.
+            #self.ui.
 
 
 
