@@ -3,7 +3,7 @@ import sys
 import os
 
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QFileDialog, QDialog
-from PySide6.QtGui import QPixmap
+from PySide6.QtGui import QPixmap, QImage
 from PySide6.QtCore import QObject, Slot, Qt, QSize
 #from PyQt6.QtCore import QObject, pyqtSlot, Qt, QSize
 from PIL import Image
@@ -34,6 +34,9 @@ class MainWindow(QMainWindow):
         #Variables quantitatives
         self.ecart_type = 20
         self.densite = 0.01
+        self.largeur_frame = self.ui.frame_ImgIn.width()
+        self.hauteur_frame = self.ui.frame_ImgIn.height()
+
 
         #Lien entre les boutons UI et les fonctions
         self.ui.bouton_ouvrirImgIn.clicked.connect(self.ouvrirImage)
@@ -51,11 +54,16 @@ class MainWindow(QMainWindow):
         print("affichage...")
         chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
         print(chemin_dossier_temp)
-        pixmap = QPixmap(chemin_dossier_temp)
-        cote = max(pixmap.width(), pixmap.height())
-        pixmap.scaled(cote, cote, aspectRatioMode=Qt.KeepAspectRatio)
-        self.ui.label_ImgOut.setPixmap(pixmap)
-        #self.ui.label_ImgOut.setScaledContents(True)
+        ImgOut = QImage(chemin_dossier_temp)
+        #Affichage de l'image dans un label, réglage des dimensions
+        largeur_ImgOut = ImgOut.width()
+        hauteur_ImgOut = ImgOut.height()
+        if largeur_ImgOut > hauteur_ImgOut :
+            ImgOut = ImgOut.scaledToWidth(self.largeur_frame, Qt.SmoothTransformation)
+        else:
+            ImgOut = ImgOut.scaledToHeight(self.hauteur_frame, Qt.SmoothTransformation)
+        self.ui.label_ImgOut.setPixmap(QPixmap.fromImage(ImgOut))
+
 
     def ouvrirImage(self):
         options = QFileDialog.Options()
@@ -64,13 +72,15 @@ class MainWindow(QMainWindow):
             #Affichage du chemin de l'image sur l'UI
             self.ui.labeltext_chemin.setText(fileName)
             #Conversion Image en QPixmap
-            pixmap = QPixmap(fileName)
-            #Affichage de l'image dans un label
-            largeur = self.ui.frame_ImgIn.width()
-            hauteur= self.ui.frame_ImgIn.height()
-            pixmap.scaled(largeur, hauteur, Qt.KeepAspectRatio, Qt.SmoothTransformation)
-            self.ui.label_ImgIn.setPixmap(pixmap)
-            self.ui.label_ImgIn.setScaledContents(True)
+            ImgIn = QImage(fileName)
+            #Affichage de l'image dans un label, réglage des dimensions
+            largeur_ImgIn = ImgIn.width()
+            hauteur_ImgIn = ImgIn.height()
+            if largeur_ImgIn > hauteur_ImgIn :
+                ImgIn = ImgIn.scaledToWidth(self.largeur_frame, Qt.SmoothTransformation)
+            else:
+                ImgIn = ImgIn.scaledToHeight(self.hauteur_frame, Qt.SmoothTransformation)
+            self.ui.label_ImgIn.setPixmap(QPixmap.fromImage(ImgIn))
 
             #Définition de l'image en PIL
             image = ouvrirImageIn(fileName)
