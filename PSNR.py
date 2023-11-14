@@ -1,4 +1,5 @@
 from PIL import Image
+import sys
 import numpy as np
 
 def calculPSNR(img1_path, img2_path):
@@ -19,12 +20,12 @@ def calculPSNR(img1_path, img2_path):
     return PSNR
 
 if len(sys.argv) != 3:
-    print("Utilisation : python gen_noise_chroma.py chemin_img_originale.jpg chemin_img_modifiee.jpg")
+    print("Utilisation : python PSNR.py chemin_img_originale.jpg chemin_img_modifiee.jpg")
     sys.exit(1)
 
 image1_path = sys.argv[1]
 image2_path = sys.argv[2]
 
 # Calcul du PSNR
-psnr_value = calculate_psnr(image1_path, image2_path)
+psnr_value = calculPSNR(image1_path, image2_path)
 print(f"PSNR entre les images : {psnr_value} dB")
