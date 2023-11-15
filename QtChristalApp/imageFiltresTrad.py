@@ -1,7 +1,7 @@
 # This Python file uses the following encoding: utf-8
 
 from PIL import Image, ImageFilter, ImageChops
-from imageSettings import enregistrerImageTmp
+from imageSettings import enregistrerImageTmp, enregistrerImageTmpCV
 import random
 import sys
 import os
@@ -12,7 +12,7 @@ import cv2
 def filtre_bilateral(image_path, diameter, var_color, var_space, MainWindow):
     image = cv2.imread(image_path)
     filtered_image = cv2.bilateralFilter(image, d=diameter, sigmaColor=var_color, sigmaSpace=var_space)
-    enregistrerImageTmp(filtered_image)
+    enregistrerImageTmpCV(filtered_image)
     MainWindow.ImageModified = True
     print(MainWindow.ImageModified)
     MainWindow.affichageImageOut()

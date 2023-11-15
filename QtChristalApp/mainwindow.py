@@ -1,6 +1,7 @@
 # This Python file uses the following encoding: utf-8
 import sys
 import os
+import cv2
 
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QFileDialog, QDialog
 from PySide6.QtGui import QPixmap, QImage
@@ -9,6 +10,7 @@ from PySide6.QtCore import QObject, Slot, Qt, QSize
 from PIL import Image
 from imageSettings import *
 from imageGenNoises import *
+from imageFiltresTrad import *
 
 # Important:
 # You need to run the following command to generate the ui_form.py file
@@ -32,10 +34,51 @@ class MainWindow(QMainWindow):
         self.ImageModified = False
 
         #Variables quantitatives
-        self.ecart_type = 20
-        self.densite = 0.01
+        self.noise_ecart_type = 20
+        self.noise_noise_densite = 0.01
+
+        self.choix_filtre = 1
+        self.filter_ecart_type = 20
+        self.filter_radius = 1
+        self.filter_taille = 3
+        self.filter_diameter = 9
+        self.filter_var_couleur = 75
+        self.filter_var_spatiale = 75
+
         self.largeur_frame = self.ui.frame_ImgIn.width()
         self.hauteur_frame = self.ui.frame_ImgIn.height()
+
+        #Sliders
+        # -- ecart_type
+        self.ui.slider_ecart_type.setMinimum(0)
+        self.ui.slider_ecart_type.setMaximum(100)
+        self.ui.slider_ecart_type.setValue(self.filter_ecart_type)
+        self.ui.slider_ecart_type.valueChanged.connect(self.update_ecart_type)
+        # -- radius
+        self.ui.slider_radius.setMinimum(0)
+        self.ui.slider_radius.setMaximum(100)
+        self.ui.slider_radius.setValue(self.filter_radius)
+        self.ui.slider_radius.valueChanged.connect(self.update_radius)
+        # -- taille
+        self.ui.slider_taille.setMinimum(0)
+        self.ui.slider_taille.setMaximum(100)
+        self.ui.slider_taille.setValue(self.filter_taille)
+        self.ui.slider_taille.valueChanged.connect(self.update_taille)
+        # -- diametre
+        self.ui.slider_diametre.setMinimum(0)
+        self.ui.slider_diametre.setMaximum(100)
+        self.ui.slider_diametre.setValue(self.filter_diameter)
+        self.ui.slider_diametre.valueChanged.connect(self.update_diametre)
+        # -- var_couleur
+        self.ui.slider_var_couleur.setMinimum(0)
+        self.ui.slider_var_couleur.setMaximum(100)
+        self.ui.slider_var_couleur.setValue(self.filter_var_couleur)
+        self.ui.slider_var_couleur.valueChanged.connect(self.update_var_couleur)
+        # -- var_spatiale
+        self.ui.slider_var_spatiale.setMinimum(0)
+        self.ui.slider_var_spatiale.setMaximum(100)
+        self.ui.slider_var_spatiale.setValue(self.filter_var_spatiale)
+        self.ui.slider_var_spatiale.valueChanged.connect(self.update_var_spatiale)
 
 
         #Lien entre les boutons UI et les fonctions
@@ -64,6 +107,38 @@ class MainWindow(QMainWindow):
             ImgOut = ImgOut.scaledToHeight(self.hauteur_frame, Qt.SmoothTransformation)
         self.ui.label_ImgOut.setPixmap(QPixmap.fromImage(ImgOut))
 
+    def set_choix_filtre(self, choix):
+        self.choix_filtre = choix
+
+    def valider_filtres(self, image, choix):
+        if choix == 1:
+            filtre_gaussien(image, self.filter_radius, self)
+        elif choix == 2:
+            filtre_bilateral(image.filename, self.filter_diameter, self.filter_var_couleur, self.filter_var_spatiale, self)
+        elif choix == 3:
+            filtre_moyenneur(image, self.filter_radius, self)
+        elif choix == 4:
+            filtre_median(image, self.filter_taille, self)
+        elif choix == 5:
+            filtre_laplacien(image, self)
+
+    def update_ecart_type(self, value):
+        self.filter_ecart_type = value
+
+    def update_radius(self, value):
+        self.filter_radius = value
+
+    def update_taille(self, value):
+        self.filter_taille = value
+
+    def update_diametre(self, value):
+        self.filter_diameter = value
+
+    def update_var_couleur(self, value):
+        self.filter_var_couleur = value
+
+    def update_var_spatiale(self, value):
+        self.filter_var_spatiale = value
 
     def ouvrirImage(self):
         options = QFileDialog.Options()
@@ -98,11 +173,19 @@ class MainWindow(QMainWindow):
                     self.ui.bouton_chromatique.setEnabled(True)
 
             #Lien entre les boutons liés à "image" et les fonctions
-            self.ui.bouton_poivresel.clicked.connect(lambda : bruit_poivre_et_sel(image, self.densite, self))
-            self.ui.bouton_gaussien.clicked.connect(lambda : bruit_gaussien(image, self.ecart_type, self))
-            self.ui.bouton_chromatique.clicked.connect(lambda : bruit_chromatique(image, self.ecart_type, self))
+            self.ui.bouton_poivresel.clicked.connect(lambda : bruit_poivre_et_sel(image, self.noise_densite, self))
+            self.ui.bouton_gaussien.clicked.connect(lambda : bruit_gaussien(image, self.noise_ecart_type, self))
+            self.ui.bouton_chromatique.clicked.connect(lambda : bruit_chromatique(image, self.noise_ecart_type, self))
 
-            #self.ui.
+            self.ui.radio_gaussien.toggled.connect(lambda : self.set_choix_filtre(1))
+            self.ui.radio_bilateral.toggled.connect(lambda : self.set_choix_filtre(2))
+            self.ui.radio_moyenneur.toggled.connect(lambda : self.set_choix_filtre(3))
+            self.ui.radio_median.toggled.connect(lambda : self.set_choix_filtre(4))
+            self.ui.radio_laplacien.toggled.connect(lambda : self.set_choix_filtre(5))
+
+            self.ui.bouton_valider.clicked.connect(lambda : self.valider_filtres(image, self.choix_filtre))
+
+
 
 
 
