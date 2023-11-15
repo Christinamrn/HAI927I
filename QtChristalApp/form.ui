@@ -165,10 +165,10 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>20</y>
-      <width>501</width>
-      <height>291</height>
+      <x>670</x>
+      <y>30</y>
+      <width>691</width>
+      <height>421</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -228,8 +228,8 @@
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
-        <x>390</x>
-        <y>220</y>
+        <x>590</x>
+        <y>360</y>
         <width>75</width>
         <height>24</height>
        </rect>
@@ -247,32 +247,32 @@
         <height>128</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="hLay_filtres">
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout">
+        <layout class="QVBoxLayout" name="vLa_filtres">
          <item>
-          <widget class="QRadioButton" name="radioButton_5">
+          <widget class="QRadioButton" name="radio_bilateral">
            <property name="text">
-            <string>Filtrage </string>
+            <string>Filtrage Bilatéral</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="radioButton">
+          <widget class="QRadioButton" name="radio_gaussien">
            <property name="text">
             <string>Filtrage Gaussien</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="radioButton_2">
+          <widget class="QRadioButton" name="radio_median">
            <property name="text">
             <string>Filtrage Médian</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="radioButton_3">
+          <widget class="QRadioButton" name="radio_moyenneur">
            <property name="text">
             <string>Filtrage Moyenneur</string>
            </property>
@@ -281,7 +281,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_4">
+        <widget class="QRadioButton" name="radio_laplacien">
          <property name="text">
           <string>Filtrage Laplacien</string>
          </property>
@@ -289,44 +289,107 @@
        </item>
       </layout>
      </widget>
-     <widget class="QSlider" name="slider_ecart_type">
+     <widget class="QWidget" name="verticalLayoutWidget_4">
       <property name="geometry">
        <rect>
         <x>350</x>
-        <y>70</y>
-        <width>101</width>
-        <height>22</height>
+        <y>30</y>
+        <width>160</width>
+        <height>291</height>
        </rect>
       </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QSlider" name="slider_var_couleur">
-      <property name="geometry">
-       <rect>
-        <x>350</x>
-        <y>110</y>
-        <width>101</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QSlider" name="slider_radius">
-      <property name="geometry">
-       <rect>
-        <x>350</x>
-        <y>150</y>
-        <width>101</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
+      <layout class="QVBoxLayout" name="vLay_options">
+       <item>
+        <layout class="QVBoxLayout" name="vLay_radius">
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Taille noyau :</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSlider" name="slider_radius">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="vLay_ecart_type">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Ecart-type :</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSlider" name="slider_ecart_type">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="vLay_diametre">
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>Taille voisinage :</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSlider" name="slider_diametre">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="vLay_var_spatiale">
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Variance spatiale :</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSlider" name="slider_var_spatiale">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="vLay_var_couleur">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Variance couleur :</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSlider" name="slider_var_couleur">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>

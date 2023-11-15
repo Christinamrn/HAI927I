@@ -67,7 +67,7 @@ class Ui_MainWindow(object):
         self.background.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.217, y1:0.943182, x2:0.792038, y2:0.017, stop:0 rgba(243, 231, 233, 255), stop:1 rgba(227, 238, 255, 255));")
         self.tabWidget = QTabWidget(self.centralwidget)
         self.tabWidget.setObjectName(u"tabWidget")
-        self.tabWidget.setGeometry(QRect(710, 20, 501, 291))
+        self.tabWidget.setGeometry(QRect(670, 30, 691, 421))
         self.GenBruit = QWidget()
         self.GenBruit.setObjectName(u"GenBruit")
         self.bouton_gaussien = QPushButton(self.GenBruit)
@@ -85,55 +85,129 @@ class Ui_MainWindow(object):
         self.Filtres.setObjectName(u"Filtres")
         self.pushButton = QPushButton(self.Filtres)
         self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(390, 220, 75, 24))
+        self.pushButton.setGeometry(QRect(590, 360, 75, 24))
         self.horizontalLayoutWidget = QWidget(self.Filtres)
         self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
         self.horizontalLayoutWidget.setGeometry(QRect(60, 60, 251, 128))
-        self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout = QVBoxLayout()
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.radioButton_5 = QRadioButton(self.horizontalLayoutWidget)
-        self.radioButton_5.setObjectName(u"radioButton_5")
+        self.hLay_filtres = QHBoxLayout(self.horizontalLayoutWidget)
+        self.hLay_filtres.setObjectName(u"hLay_filtres")
+        self.hLay_filtres.setContentsMargins(0, 0, 0, 0)
+        self.vLa_filtres = QVBoxLayout()
+        self.vLa_filtres.setObjectName(u"vLa_filtres")
+        self.radio_bilateral = QRadioButton(self.horizontalLayoutWidget)
+        self.radio_bilateral.setObjectName(u"radio_bilateral")
 
-        self.verticalLayout.addWidget(self.radioButton_5)
+        self.vLa_filtres.addWidget(self.radio_bilateral)
 
-        self.radioButton = QRadioButton(self.horizontalLayoutWidget)
-        self.radioButton.setObjectName(u"radioButton")
+        self.radio_gaussien = QRadioButton(self.horizontalLayoutWidget)
+        self.radio_gaussien.setObjectName(u"radio_gaussien")
 
-        self.verticalLayout.addWidget(self.radioButton)
+        self.vLa_filtres.addWidget(self.radio_gaussien)
 
-        self.radioButton_2 = QRadioButton(self.horizontalLayoutWidget)
-        self.radioButton_2.setObjectName(u"radioButton_2")
+        self.radio_median = QRadioButton(self.horizontalLayoutWidget)
+        self.radio_median.setObjectName(u"radio_median")
 
-        self.verticalLayout.addWidget(self.radioButton_2)
+        self.vLa_filtres.addWidget(self.radio_median)
 
-        self.radioButton_3 = QRadioButton(self.horizontalLayoutWidget)
-        self.radioButton_3.setObjectName(u"radioButton_3")
+        self.radio_moyenneur = QRadioButton(self.horizontalLayoutWidget)
+        self.radio_moyenneur.setObjectName(u"radio_moyenneur")
 
-        self.verticalLayout.addWidget(self.radioButton_3)
+        self.vLa_filtres.addWidget(self.radio_moyenneur)
 
 
-        self.horizontalLayout.addLayout(self.verticalLayout)
+        self.hLay_filtres.addLayout(self.vLa_filtres)
 
-        self.radioButton_4 = QRadioButton(self.horizontalLayoutWidget)
-        self.radioButton_4.setObjectName(u"radioButton_4")
+        self.radio_laplacien = QRadioButton(self.horizontalLayoutWidget)
+        self.radio_laplacien.setObjectName(u"radio_laplacien")
 
-        self.horizontalLayout.addWidget(self.radioButton_4)
+        self.hLay_filtres.addWidget(self.radio_laplacien)
 
-        self.slider_ecart_type = QSlider(self.Filtres)
-        self.slider_ecart_type.setObjectName(u"slider_ecart_type")
-        self.slider_ecart_type.setGeometry(QRect(350, 70, 101, 22))
-        self.slider_ecart_type.setOrientation(Qt.Horizontal)
-        self.slider_var_couleur = QSlider(self.Filtres)
-        self.slider_var_couleur.setObjectName(u"slider_var_couleur")
-        self.slider_var_couleur.setGeometry(QRect(350, 110, 101, 21))
-        self.slider_var_couleur.setOrientation(Qt.Horizontal)
-        self.slider_radius = QSlider(self.Filtres)
+        self.verticalLayoutWidget_4 = QWidget(self.Filtres)
+        self.verticalLayoutWidget_4.setObjectName(u"verticalLayoutWidget_4")
+        self.verticalLayoutWidget_4.setGeometry(QRect(350, 30, 160, 291))
+        self.vLay_options = QVBoxLayout(self.verticalLayoutWidget_4)
+        self.vLay_options.setObjectName(u"vLay_options")
+        self.vLay_options.setContentsMargins(0, 0, 0, 0)
+        self.vLay_radius = QVBoxLayout()
+        self.vLay_radius.setObjectName(u"vLay_radius")
+        self.label_3 = QLabel(self.verticalLayoutWidget_4)
+        self.label_3.setObjectName(u"label_3")
+
+        self.vLay_radius.addWidget(self.label_3)
+
+        self.slider_radius = QSlider(self.verticalLayoutWidget_4)
         self.slider_radius.setObjectName(u"slider_radius")
-        self.slider_radius.setGeometry(QRect(350, 150, 101, 22))
         self.slider_radius.setOrientation(Qt.Horizontal)
+
+        self.vLay_radius.addWidget(self.slider_radius)
+
+
+        self.vLay_options.addLayout(self.vLay_radius)
+
+        self.vLay_ecart_type = QVBoxLayout()
+        self.vLay_ecart_type.setObjectName(u"vLay_ecart_type")
+        self.label = QLabel(self.verticalLayoutWidget_4)
+        self.label.setObjectName(u"label")
+
+        self.vLay_ecart_type.addWidget(self.label)
+
+        self.slider_ecart_type = QSlider(self.verticalLayoutWidget_4)
+        self.slider_ecart_type.setObjectName(u"slider_ecart_type")
+        self.slider_ecart_type.setOrientation(Qt.Horizontal)
+
+        self.vLay_ecart_type.addWidget(self.slider_ecart_type)
+
+
+        self.vLay_options.addLayout(self.vLay_ecart_type)
+
+        self.vLay_diametre = QVBoxLayout()
+        self.vLay_diametre.setObjectName(u"vLay_diametre")
+        self.label_4 = QLabel(self.verticalLayoutWidget_4)
+        self.label_4.setObjectName(u"label_4")
+
+        self.vLay_diametre.addWidget(self.label_4)
+
+        self.slider_diametre = QSlider(self.verticalLayoutWidget_4)
+        self.slider_diametre.setObjectName(u"slider_diametre")
+        self.slider_diametre.setOrientation(Qt.Horizontal)
+
+        self.vLay_diametre.addWidget(self.slider_diametre)
+
+
+        self.vLay_options.addLayout(self.vLay_diametre)
+
+        self.vLay_var_spatiale = QVBoxLayout()
+        self.vLay_var_spatiale.setObjectName(u"vLay_var_spatiale")
+        self.label_5 = QLabel(self.verticalLayoutWidget_4)
+        self.label_5.setObjectName(u"label_5")
+
+        self.vLay_var_spatiale.addWidget(self.label_5)
+
+        self.slider_var_spatiale = QSlider(self.verticalLayoutWidget_4)
+        self.slider_var_spatiale.setObjectName(u"slider_var_spatiale")
+        self.slider_var_spatiale.setOrientation(Qt.Horizontal)
+
+        self.vLay_var_spatiale.addWidget(self.slider_var_spatiale)
+
+
+        self.vLay_options.addLayout(self.vLay_var_spatiale)
+
+        self.vLay_var_couleur = QVBoxLayout()
+        self.vLay_var_couleur.setObjectName(u"vLay_var_couleur")
+        self.label_2 = QLabel(self.verticalLayoutWidget_4)
+        self.label_2.setObjectName(u"label_2")
+
+        self.vLay_var_couleur.addWidget(self.label_2)
+
+        self.slider_var_couleur = QSlider(self.verticalLayoutWidget_4)
+        self.slider_var_couleur.setObjectName(u"slider_var_couleur")
+        self.slider_var_couleur.setOrientation(Qt.Horizontal)
+
+        self.vLay_var_couleur.addWidget(self.slider_var_couleur)
+
+
+        self.vLay_options.addLayout(self.vLay_var_couleur)
+
         self.tabWidget.addTab(self.Filtres, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.background.raise_()
@@ -170,11 +244,16 @@ class Ui_MainWindow(object):
         self.bouton_chromatique.setText(QCoreApplication.translate("MainWindow", u"Chromatique", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.GenBruit), QCoreApplication.translate("MainWindow", u"G\u00e9n\u00e9rateur de bruit", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Valider", None))
-        self.radioButton_5.setText(QCoreApplication.translate("MainWindow", u"Filtrage ", None))
-        self.radioButton.setText(QCoreApplication.translate("MainWindow", u"Filtrage Gaussien", None))
-        self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"Filtrage M\u00e9dian", None))
-        self.radioButton_3.setText(QCoreApplication.translate("MainWindow", u"Filtrage Moyenneur", None))
-        self.radioButton_4.setText(QCoreApplication.translate("MainWindow", u"Filtrage Laplacien", None))
+        self.radio_bilateral.setText(QCoreApplication.translate("MainWindow", u"Filtrage Bilat\u00e9ral", None))
+        self.radio_gaussien.setText(QCoreApplication.translate("MainWindow", u"Filtrage Gaussien", None))
+        self.radio_median.setText(QCoreApplication.translate("MainWindow", u"Filtrage M\u00e9dian", None))
+        self.radio_moyenneur.setText(QCoreApplication.translate("MainWindow", u"Filtrage Moyenneur", None))
+        self.radio_laplacien.setText(QCoreApplication.translate("MainWindow", u"Filtrage Laplacien", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Taille noyau :", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Ecart-type :", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Taille voisinage :", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Variance spatiale :", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Variance couleur :", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Filtres), QCoreApplication.translate("MainWindow", u"Filtrages", None))
     # retranslateUi
 
