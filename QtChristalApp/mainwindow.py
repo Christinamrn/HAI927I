@@ -4,7 +4,7 @@ import os
 import cv2
 
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QFileDialog, QDialog
-from PySide6.QtGui import QPixmap, QImage
+from PySide6.QtGui import QPixmap, QImage, QTransform
 from PySide6.QtCore import QObject, Slot, Qt, QSize
 #from PyQt6.QtCore import QObject, pyqtSlot, Qt, QSize
 from PIL import Image
@@ -27,6 +27,10 @@ class MainWindow(QMainWindow):
         #--------------
         #INITIALISATION
         #--------------
+        self.move(0, 0)
+        #Mesure des frames des Imgs In/Out
+        self.largeur_frame = self.ui.frame_ImgIn.width()
+        self.hauteur_frame = self.ui.frame_ImgIn.height()
 
         #Variables Booléennes
         self.ImageInIsSet = False
@@ -35,7 +39,7 @@ class MainWindow(QMainWindow):
 
         #Variables quantitatives
         self.noise_ecart_type = 20
-        self.noise_noise_densite = 0.01
+        self.noise_densite = 0.01
 
         self.choix_filtre = 1
         self.filter_ecart_type = 20
@@ -45,25 +49,38 @@ class MainWindow(QMainWindow):
         self.filter_var_couleur = 75
         self.filter_var_spatiale = 75
 
-        self.largeur_frame = self.ui.frame_ImgIn.width()
-        self.hauteur_frame = self.ui.frame_ImgIn.height()
+        #Initialisation params
+        self.ui.tabWidget_cfg.setVisible(False)
+        self.ui.tabWidget_cfg.setCurrentIndex(0)
 
-        #Sliders
+        #Sliders GENERATEURS BRUIT
         # -- ecart_type
-        self.ui.slider_ecart_type.setMinimum(0)
+        self.ui.slider_ecart_type.setMinimum(1)
         self.ui.slider_ecart_type.setMaximum(100)
-        self.ui.slider_ecart_type.setValue(self.filter_ecart_type)
+        self.ui.slider_ecart_type.setValue(self.noise_ecart_type)
         self.ui.slider_ecart_type.valueChanged.connect(self.update_ecart_type)
         self.ui.label_ecart_type.setText(f"Écart-type : {self.ui.slider_ecart_type.value()}")
+        # -- densite
+        self.ui.slider_densite.setMinimum(1)
+        self.ui.slider_densite.setMaximum(10)
+        self.ui.slider_diametre.setSingleStep(1)
+        self.ui.slider_densite.setValue(int(self.noise_densite * 100))
+        self.ui.slider_densite.valueChanged.connect(self.update_densite)
+        print(self.ui.slider_densite.value())
+        self.ui.label_densite.setText(f"Densité : {self.noise_densite:.2f}")
+
+        #Sliders FILTRES
+
         # -- radius
-        self.ui.slider_radius.setMinimum(0)
-        self.ui.slider_radius.setMaximum(100)
+        self.ui.slider_radius.setMinimum(1)
+        self.ui.slider_radius.setMaximum(5)
         self.ui.slider_radius.setValue(self.filter_radius)
         self.ui.slider_radius.valueChanged.connect(self.update_radius)
         self.ui.label_radius.setText(f"Taille noyau : {self.ui.slider_radius.value()}")
         # -- taille
-        self.ui.slider_taille.setMinimum(0)
-        self.ui.slider_taille.setMaximum(100)
+        self.ui.slider_taille.setMinimum(3)
+        self.ui.slider_taille.setMaximum(11)
+        self.ui.slider_diametre.setSingleStep(2)
         self.ui.slider_taille.setValue(self.filter_taille)
         self.ui.slider_taille.valueChanged.connect(self.update_taille)
         self.ui.label_taille.setText(f"Taille voisinage : { self.ui.slider_taille.value()}")
@@ -87,17 +104,17 @@ class MainWindow(QMainWindow):
         self.ui.slider_var_spatiale.valueChanged.connect(self.update_var_spatiale)
         self.ui.label_var_spatiale.setText(f"Variance spatiale : {self.ui.slider_var_spatiale.value()}")
 
-
         #Lien entre les boutons UI et les fonctions
         self.ui.bouton_ouvrirImgIn.clicked.connect(self.ouvrirImage)
 
-        #Ne pas autoriser le changement d'état des boutons
-        #self.ui.bouton_poivresel.setVisible(False)
-        #self.ui.bouton_gaussien.setVisible(False)
-        #self.ui.bouton_chromatique.setVisible(False)
-        self.ui.bouton_poivresel.setEnabled(False)
-        self.ui.bouton_gaussien.setEnabled(False)
-        self.ui.bouton_chromatique.setEnabled(False)
+        #Visibilité boutons Gen Noise
+        self.ui.bouton_poivresel.setVisible(False)
+        self.ui.bouton_gaussien.setVisible(False)
+        self.ui.bouton_chromatique.setVisible(False)
+        self.set_choix_noise(0)
+        #self.ui.bouton_poivresel.setEnabled(False)
+        #self.ui.bouton_gaussien.setEnabled(False)
+        #self.ui.bouton_chromatique.setEnabled(False)
         #self.ui.bouton_afficher.clicked.connect(lambda : self.affichageImageOut())
 
     def affichageImageOut(self):
@@ -114,46 +131,49 @@ class MainWindow(QMainWindow):
             ImgOut = ImgOut.scaledToHeight(self.hauteur_frame, Qt.SmoothTransformation)
         self.ui.label_ImgOut.setPixmap(QPixmap.fromImage(ImgOut))
 
+
+    # GENERATEURS BRUIT
+
+    def update_ecart_type(self, value):
+        self.noise_ecart_type = value
+        self.ui.label_ecart_type.setText(f"Écart-type : {value}")
+
+    def update_densite(self, value):
+        self.noise_densite = value / 100.0
+        self.ui.label_densite.setText(f"Densité : {self.noise_densite:.2f}")
+
+    def set_choix_noise(self, choix):
+        self.ui.slider_ecart_type.setEnabled(False)
+        self.ui.slider_densite.setEnabled(False)
+        if choix == 1:
+            self.ui.slider_ecart_type.setEnabled(True)
+        elif choix == 2:
+            self.ui.slider_densite.setEnabled(True)
+
+
+    # FILTRES
+
     def set_choix_filtre(self, choix):
         self.choix_filtre = choix
+        self.set_choix_filtre_var(choix)
 
     def set_choix_filtre_var(self, choix):
-        self.ui.vLay_radius.setEnabled(False)
-        self.ui.vLay_diametre.setEnabled(False)
-        self.ui.vLay_var_couleur.setEnabled(False)
-        self.ui.vLay_var_spatiale.setEnabled(False)
-        self.ui.vLay_taille.setEnabled(False)
-        self.ui.vLay_ecart_type
+        #print("set_choix_filtre_var called with choix =", choix)
+        self.ui.slider_radius.setEnabled(False)
+        self.ui.slider_diametre.setEnabled(False)
+        self.ui.slider_var_couleur.setEnabled(False)
+        self.ui.slider_var_spatiale.setEnabled(False)
+        self.ui.slider_taille.setEnabled(False)
         if choix == 1:
-            self.ui.vLay_radius.setEnabled(True)
+            self.ui.slider_radius.setEnabled(True)
         elif choix == 2:
-
+            self.ui.slider_diametre.setEnabled(True)
+            self.ui.slider_var_couleur.setEnabled(True)
+            self.ui.slider_var_spatiale.setEnabled(True)
         elif choix == 3:
-
+            self.ui.slider_radius.setEnabled(True)
         elif choix == 4:
-
-        elif choix == 5:
-
-
-    def valider_filtres(self, image, choix):
-        if choix == 1:
-            filtre_gaussien(image, self.filter_radius, self)
-        elif choix == 2:
-            filtre_bilateral(image.filename, self.filter_diameter, self.filter_var_couleur, self.filter_var_spatiale, self)
-        elif choix == 3:
-            filtre_moyenneur(image, self.filter_radius, self)
-        elif choix == 4:
-            filtre_median(image, self.filter_taille, self)
-        elif choix == 5:
-            filtre_laplacien(image, self)
-
-#def slider_value_changed(self, value):
-# Mettre à jour le texte du QLabel avec la valeur actuelle du slider
-#    self.sender().parent().findChild(QLabel).setText(f"Valeur actuelle : {value}")
-
-    def update_ecart_type(self, value): # PAS FILTRE MAIS GEN NOISE
-        self.filter_ecart_type = value
-        self.ui.label_ecart_type.setText(f"Écart-type : {value}")
+            self.ui.slider_taille.setEnabled(True)
 
     def update_radius(self, value):
         self.filter_radius = value
@@ -174,6 +194,19 @@ class MainWindow(QMainWindow):
     def update_var_spatiale(self, value):
         self.filter_var_spatiale = value
         self.ui.label_var_spatiale.setText(f"Variance spatiale : {value}")
+
+    def valider_filtres(self, image, choix):
+        if choix == 1:
+            filtre_gaussien(image, self.filter_radius, self)
+        elif choix == 2:
+            filtre_bilateral(image.filename, self.filter_diameter, self.filter_var_couleur, self.filter_var_spatiale, self)
+        elif choix == 3:
+            filtre_moyenneur(image, self.filter_radius, self)
+        elif choix == 4:
+            filtre_median(image, self.filter_taille, self)
+        elif choix == 5:
+            filtre_laplacien(image, self)
+
 
     def ouvrirImage(self):
         options = QFileDialog.Options()
@@ -200,12 +233,18 @@ class MainWindow(QMainWindow):
 
             #Si l'image d'origine est définie
             if(self.ImageInIsSet):
+                self.ui.tabWidget_cfg.setVisible(True)
+                #Gen Noise
                 if(self.ImageNdg):
-                    self.ui.bouton_poivresel.setEnabled(True)
-                    self.ui.bouton_gaussien.setEnabled(True)
+                    self.ui.bouton_poivresel.setVisible(True)
+                    self.ui.bouton_gaussien.setVisible(True)
+                    self.set_choix_noise(1)
                 else:
                     self.ui.bouton_chromatique.setVisible(True)
-                    self.ui.bouton_chromatique.setEnabled(True)
+                    self.set_choix_noise(1)
+                #Filtres
+
+
 
             #Lien entre les boutons liés à "image" et les fonctions
             self.ui.bouton_poivresel.clicked.connect(lambda : bruit_poivre_et_sel(image, self.noise_densite, self))

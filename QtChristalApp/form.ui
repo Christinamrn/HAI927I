@@ -2,24 +2,27 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>1920</width>
-    <height>1080</height>
+    <height>1043</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>1920</width>
-    <height>1080</height>
+    <height>1000</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>1920</width>
-    <height>1080</height>
+    <height>1043</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -38,6 +41,18 @@
    <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="minimumSize">
+    <size>
+     <width>1920</width>
+     <height>1000</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1920</width>
+     <height>1000</height>
+    </size>
+   </property>
    <property name="styleSheet">
     <string notr="true"/>
    </property>
@@ -48,7 +63,7 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>480</y>
+      <y>450</y>
       <width>500</width>
       <height>500</height>
      </rect>
@@ -80,7 +95,7 @@
     <property name="geometry">
      <rect>
       <x>700</x>
-      <y>480</y>
+      <y>450</y>
       <width>500</width>
       <height>500</height>
      </rect>
@@ -94,7 +109,7 @@
     <widget class="QLabel" name="label_ImgOut">
      <property name="geometry">
       <rect>
-       <x>-10</x>
+       <x>0</x>
        <y>0</y>
        <width>500</width>
        <height>500</height>
@@ -114,109 +129,138 @@
       <x>0</x>
       <y>0</y>
       <width>1920</width>
-      <height>1080</height>
+      <height>1000</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
       <width>1920</width>
-      <height>1080</height>
+      <height>1000</height>
      </size>
     </property>
     <property name="maximumSize">
      <size>
       <width>1920</width>
-      <height>1080</height>
+      <height>1000</height>
      </size>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: qlineargradient(spread:pad, x1:0.217, y1:0.943182, x2:0.792038, y2:0.017, stop:0 rgba(243, 231, 233, 255), stop:1 rgba(227, 238, 255, 255));</string>
     </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QTabWidget" name="tabWidget">
+   <widget class="QTabWidget" name="tabWidget_cfg">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>640</x>
       <y>10</y>
-      <width>691</width>
-      <height>421</height>
+      <width>601</width>
+      <height>361</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="GenBruit">
      <attribute name="title">
       <string>Générateur de bruit</string>
      </attribute>
-     <widget class="QPushButton" name="bouton_gaussien">
+     <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>100</y>
-        <width>75</width>
-        <height>24</height>
+        <y>90</y>
+        <width>361</width>
+        <height>104</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Gaussien</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="bouton_poivresel">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>70</y>
-        <width>75</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PoivreEtSel</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="bouton_chromatique">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>40</y>
-        <width>75</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Chromatique</string>
-      </property>
-     </widget>
-     <widget class="QWidget" name="">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>180</y>
-        <width>158</width>
-        <height>46</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="vLay_ecart_type">
-       <item>
-        <widget class="QLabel" name="label_ecart_type">
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="1" column="2">
+        <widget class="QPushButton" name="bouton_poivresel">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="text">
-          <string>Ecart-type :</string>
+          <string>PoivreEtSel</string>
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QSlider" name="slider_ecart_type">
+       <item row="0" column="3">
+        <widget class="QPushButton" name="bouton_chromatique">
+         <property name="text">
+          <string>Chromatique</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="bouton_gaussien">
+         <property name="text">
+          <string>Gaussien</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <layout class="QVBoxLayout" name="vLay_ecart_type" stretch="0,0">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetDefaultConstraint</enum>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_ecart_type">
+           <property name="text">
+            <string>Ecart-type :</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSlider" name="slider_ecart_type">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0">
+        <layout class="QVBoxLayout" name="vLay_densite">
+         <item>
+          <widget class="QLabel" name="label_densite">
+           <property name="text">
+            <string>Densité :</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSlider" name="slider_densite">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="1">
+        <spacer name="horizontalSpacer">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
-        </widget>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -228,8 +272,8 @@
      <widget class="QPushButton" name="bouton_valider">
       <property name="geometry">
        <rect>
-        <x>590</x>
-        <y>360</y>
+        <x>510</x>
+        <y>280</y>
         <width>75</width>
         <height>24</height>
        </rect>
@@ -241,8 +285,8 @@
      <widget class="QWidget" name="horizontalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>60</y>
+        <x>10</x>
+        <y>10</y>
         <width>251</width>
         <height>128</height>
        </rect>
@@ -292,13 +336,13 @@
      <widget class="QWidget" name="verticalLayoutWidget_4">
       <property name="geometry">
        <rect>
-        <x>350</x>
-        <y>30</y>
+        <x>340</x>
+        <y>0</y>
         <width>160</width>
         <height>308</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="vLay_options">
+      <layout class="QVBoxLayout" name="vLay_options_filter">
        <item>
         <layout class="QVBoxLayout" name="vLay_radius">
          <item>
@@ -315,6 +359,9 @@
            </property>
            <property name="invertedControls">
             <bool>false</bool>
+           </property>
+           <property name="tickPosition">
+            <enum>QSlider::NoTicks</enum>
            </property>
           </widget>
          </item>
@@ -342,6 +389,9 @@
         <layout class="QVBoxLayout" name="vLay_diametre">
          <item>
           <widget class="QLabel" name="label_diametre">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
            <property name="text">
             <string>Diamètre voisinage :</string>
            </property>
@@ -349,6 +399,9 @@
          </item>
          <item>
           <widget class="QSlider" name="slider_diametre">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -482,11 +535,53 @@
      </property>
     </widget>
    </widget>
+   <widget class="QTabWidget" name="tabWidget_Mesure">
+    <property name="geometry">
+     <rect>
+      <x>1560</x>
+      <y>110</y>
+      <width>261</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="tabPosition">
+     <enum>QTabWidget::North</enum>
+    </property>
+    <property name="tabShape">
+     <enum>QTabWidget::Rounded</enum>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <property name="elideMode">
+     <enum>Qt::ElideNone</enum>
+    </property>
+    <property name="documentMode">
+     <bool>false</bool>
+    </property>
+    <property name="tabsClosable">
+     <bool>false</bool>
+    </property>
+    <property name="movable">
+     <bool>false</bool>
+    </property>
+    <widget class="QWidget" name="PSNR">
+     <attribute name="title">
+      <string>PSNR</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="SSIM">
+     <attribute name="title">
+      <string>SSIM</string>
+     </attribute>
+    </widget>
+   </widget>
    <zorder>background</zorder>
    <zorder>frame_ImgIn</zorder>
    <zorder>frame_ImgOut</zorder>
-   <zorder>tabWidget</zorder>
+   <zorder>tabWidget_cfg</zorder>
    <zorder>frame</zorder>
+   <zorder>tabWidget_Mesure</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
