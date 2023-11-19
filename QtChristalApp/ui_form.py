@@ -299,15 +299,39 @@ class Ui_MainWindow(object):
         self.tabWidget_Mesure.setMovable(False)
         self.PSNR = QWidget()
         self.PSNR.setObjectName(u"PSNR")
-        self.label_PSNR = QLabel(self.PSNR)
+        self.horizontalLayoutWidget_2 = QWidget(self.PSNR)
+        self.horizontalLayoutWidget_2.setObjectName(u"horizontalLayoutWidget_2")
+        self.horizontalLayoutWidget_2.setGeometry(QRect(50, 30, 161, 31))
+        self.horizontalLayout_2 = QHBoxLayout(self.horizontalLayoutWidget_2)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.label_PSNR = QLabel(self.horizontalLayoutWidget_2)
         self.label_PSNR.setObjectName(u"label_PSNR")
-        self.label_PSNR.setGeometry(QRect(100, 50, 49, 16))
+
+        self.horizontalLayout_2.addWidget(self.label_PSNR)
+
+        self.horizontalSpacer_2 = QSpacerItem(15, 5, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
+
+        self.label_2 = QLabel(self.horizontalLayoutWidget_2)
+        self.label_2.setObjectName(u"label_2")
+
+        self.horizontalLayout_2.addWidget(self.label_2)
+
         self.tabWidget_Mesure.addTab(self.PSNR, "")
         self.SSIM = QWidget()
         self.SSIM.setObjectName(u"SSIM")
         self.label_SSIM = QLabel(self.SSIM)
         self.label_SSIM.setObjectName(u"label_SSIM")
         self.label_SSIM.setGeometry(QRect(70, 70, 49, 16))
+        self.label = QLabel(self.SSIM)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(10, 70, 241, 51))
+        self.label.setTextFormat(Qt.AutoText)
+        self.label.setScaledContents(False)
+        self.label.setAlignment(Qt.AlignCenter)
+        self.label.setWordWrap(True)
         self.tabWidget_Mesure.addTab(self.SSIM, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.background.raise_()
@@ -361,8 +385,10 @@ class Ui_MainWindow(object):
         self.labeltext_chemin.setText(QCoreApplication.translate("MainWindow", u"Chemin du fichier ", None))
         self.bouton_ouvrirImgIn.setText(QCoreApplication.translate("MainWindow", u"Ouvrir image", None))
         self.label_PSNR.setText("")
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"dB", None))
         self.tabWidget_Mesure.setTabText(self.tabWidget_Mesure.indexOf(self.PSNR), QCoreApplication.translate("MainWindow", u"PSNR", None))
         self.label_SSIM.setText("")
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Un coefficient de 1 indique une similarit\u00e9 parfaite entre les deux images.", None))
         self.tabWidget_Mesure.setTabText(self.tabWidget_Mesure.indexOf(self.SSIM), QCoreApplication.translate("MainWindow", u"SSIM", None))
     # retranslateUi
 

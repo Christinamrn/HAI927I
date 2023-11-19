@@ -57,6 +57,8 @@ class MainWindow(QMainWindow):
         self.ui.tabWidget_cfg.setVisible(False)
         self.ui.tabWidget_cfg.setCurrentIndex(1)
 
+        self.ui.tabWidget_Mesure.setVisible(False)
+
         #Sliders GENERATEURS BRUIT
         # -- ecart_type
         self.ui.slider_ecart_type.setMinimum(1)
@@ -225,6 +227,7 @@ class MainWindow(QMainWindow):
             filtre_laplacien(imagetemp, self)
 
         self.update_metric(image)
+        self.ui.tabWidget_Mesure.setVisible(True)
 
     # MESURES
 
