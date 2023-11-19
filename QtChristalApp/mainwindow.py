@@ -51,7 +51,7 @@ class MainWindow(QMainWindow):
 
         #Initialisation params
         self.ui.tabWidget_cfg.setVisible(False)
-        self.ui.tabWidget_cfg.setCurrentIndex(0)
+        self.ui.tabWidget_cfg.setCurrentIndex(1)
 
         #Sliders GENERATEURS BRUIT
         # -- ecart_type
@@ -131,6 +131,9 @@ class MainWindow(QMainWindow):
             ImgOut = ImgOut.scaledToHeight(self.hauteur_frame, Qt.SmoothTransformation)
         self.ui.label_ImgOut.setPixmap(QPixmap.fromImage(ImgOut))
 
+        if self.ImageModified == True:
+            self.ui.radio_laplacien.setEnabled(True)
+
 
     # GENERATEURS BRUIT
 
@@ -205,7 +208,9 @@ class MainWindow(QMainWindow):
         elif choix == 4:
             filtre_median(image, self.filter_taille, self)
         elif choix == 5:
-            filtre_laplacien(image, self)
+            chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
+            imagetemp = ouvrirImageIn(chemin_dossier_temp)
+            filtre_laplacien(imagetemp, self)
 
 
     def ouvrirImage(self):
@@ -244,8 +249,6 @@ class MainWindow(QMainWindow):
                     self.set_choix_noise(1)
                 #Filtres
 
-
-
             #Lien entre les boutons liés à "image" et les fonctions
             self.ui.bouton_poivresel.clicked.connect(lambda : bruit_poivre_et_sel(image, self.noise_densite, self))
             self.ui.bouton_gaussien.clicked.connect(lambda : bruit_gaussien(image, self.noise_ecart_type, self))
@@ -256,7 +259,7 @@ class MainWindow(QMainWindow):
             self.ui.radio_moyenneur.toggled.connect(lambda : self.set_choix_filtre(3))
             self.ui.radio_median.toggled.connect(lambda : self.set_choix_filtre(4))
             self.ui.radio_laplacien.toggled.connect(lambda : self.set_choix_filtre(5))
-
+            self.ui.radio_laplacien.setEnabled(False)
 
             self.ui.bouton_valider.clicked.connect(lambda : self.valider_filtres(image, self.choix_filtre))
 
