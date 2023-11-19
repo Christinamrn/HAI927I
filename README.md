@@ -8,6 +8,7 @@
 * [Compte rendu n°1](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Comptes%20Rendus/%5BHAI927I%5D%20Christal%20-%20CR1.pdf)
 * [Compte rendu n°2](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Comptes%20Rendus/%5BHAI927I%5D%20Christal%20-%20CR2.pdf)
 * [Compte rendu n°3](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Comptes%20Rendus/%5BHAI927I%5D%20Christal%20-%20CR3.pdf)
+* [Compte rendu n°4](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Comptes%20Rendus/%5BHAI927I%5D%20Christal%20-%20CR4.pdf)
 
 ## Fonctionnement du git ⚙️
 Voici comment est organisé le projet avec ses différents dossiers :
@@ -21,6 +22,8 @@ Voici comment est organisé le projet avec ses différents dossiers :
 * 📁 **filters** regroupe différents filtres à tester.
 
 * 📁 **imgoutdenoised** regroupe les images résultantes du débruitage.
+
+* 📁 **metrics** regroupe les fonctions calculant les métriques.
 
 ## Application Qt ⚙💻
 * 📁 **QtChristalApp** est le dossier contenant l'application en cours de développement. Celle-ci reprend les concepts vu précédemment ainsi que les prochains ajouts sur une interface graphique. Celle-ci est destinée à un utilisateur lambda qui souhaiterait débruiter son image simplement par le biais de notre application. Nous utilisons QtCreator en version Python (QtPy).
