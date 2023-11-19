@@ -194,6 +194,32 @@
        <string>Chromatique</string>
       </property>
      </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>180</y>
+        <width>158</width>
+        <height>46</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="vLay_ecart_type">
+       <item>
+        <widget class="QLabel" name="label_ecart_type">
+         <property name="text">
+          <string>Ecart-type :</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="slider_ecart_type">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
     <widget class="QWidget" name="Filtres">
      <attribute name="title">
@@ -305,24 +331,6 @@
          </item>
          <item>
           <widget class="QSlider" name="slider_taille">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="vLay_ecart_type">
-         <item>
-          <widget class="QLabel" name="label_ecart_type">
-           <property name="text">
-            <string>Ecart-type :</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSlider" name="slider_ecart_type">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>

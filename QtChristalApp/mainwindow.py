@@ -75,13 +75,13 @@ class MainWindow(QMainWindow):
         self.ui.slider_diametre.valueChanged.connect(self.update_diametre)
         self.ui.label_diametre.setText(f"Diamètre voisinage : {self.ui.slider_diametre.value()}")
         # -- var_couleur
-        self.ui.slider_var_couleur.setMinimum(0)
+        self.ui.slider_var_couleur.setMinimum(10)
         self.ui.slider_var_couleur.setMaximum(100)
         self.ui.slider_var_couleur.setValue(self.filter_var_couleur)
         self.ui.slider_var_couleur.valueChanged.connect(self.update_var_couleur)
         self.ui.label_var_couleur.setText(f"Variance couleur : {self.ui.slider_var_couleur.value()}")
         # -- var_spatiale
-        self.ui.slider_var_spatiale.setMinimum(0)
+        self.ui.slider_var_spatiale.setMinimum(10)
         self.ui.slider_var_spatiale.setMaximum(100)
         self.ui.slider_var_spatiale.setValue(self.filter_var_spatiale)
         self.ui.slider_var_spatiale.valueChanged.connect(self.update_var_spatiale)
@@ -117,6 +117,24 @@ class MainWindow(QMainWindow):
     def set_choix_filtre(self, choix):
         self.choix_filtre = choix
 
+    def set_choix_filtre_var(self, choix):
+        self.ui.vLay_radius.setEnabled(False)
+        self.ui.vLay_diametre.setEnabled(False)
+        self.ui.vLay_var_couleur.setEnabled(False)
+        self.ui.vLay_var_spatiale.setEnabled(False)
+        self.ui.vLay_taille.setEnabled(False)
+        self.ui.vLay_ecart_type
+        if choix == 1:
+            self.ui.vLay_radius.setEnabled(True)
+        elif choix == 2:
+
+        elif choix == 3:
+
+        elif choix == 4:
+
+        elif choix == 5:
+
+
     def valider_filtres(self, image, choix):
         if choix == 1:
             filtre_gaussien(image, self.filter_radius, self)
@@ -133,7 +151,7 @@ class MainWindow(QMainWindow):
 # Mettre à jour le texte du QLabel avec la valeur actuelle du slider
 #    self.sender().parent().findChild(QLabel).setText(f"Valeur actuelle : {value}")
 
-    def update_ecart_type(self, value):
+    def update_ecart_type(self, value): # PAS FILTRE MAIS GEN NOISE
         self.filter_ecart_type = value
         self.ui.label_ecart_type.setText(f"Écart-type : {value}")
 
@@ -199,6 +217,7 @@ class MainWindow(QMainWindow):
             self.ui.radio_moyenneur.toggled.connect(lambda : self.set_choix_filtre(3))
             self.ui.radio_median.toggled.connect(lambda : self.set_choix_filtre(4))
             self.ui.radio_laplacien.toggled.connect(lambda : self.set_choix_filtre(5))
+
 
             self.ui.bouton_valider.clicked.connect(lambda : self.valider_filtres(image, self.choix_filtre))
 
