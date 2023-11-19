@@ -11,6 +11,7 @@ from PIL import Image
 from imageSettings import *
 from imageGenNoises import *
 from imageFiltresTrad import *
+from imageMesure import *
 
 # Important:
 # You need to run the following command to generate the ui_form.py file
@@ -48,6 +49,9 @@ class MainWindow(QMainWindow):
         self.filter_diameter = 9
         self.filter_var_couleur = 75
         self.filter_var_spatiale = 75
+
+        self.metric_PSNR = None
+        self.metric_SSIM = None
 
         #Initialisation params
         self.ui.tabWidget_cfg.setVisible(False)
@@ -103,6 +107,9 @@ class MainWindow(QMainWindow):
         self.ui.slider_var_spatiale.setValue(self.filter_var_spatiale)
         self.ui.slider_var_spatiale.valueChanged.connect(self.update_var_spatiale)
         self.ui.label_var_spatiale.setText(f"Variance spatiale : {self.ui.slider_var_spatiale.value()}")
+
+        #Visibilité filtres
+        self.set_choix_filtre_var(0)
 
         #Lien entre les boutons UI et les fonctions
         self.ui.bouton_ouvrirImgIn.clicked.connect(self.ouvrirImage)
@@ -181,22 +188,27 @@ class MainWindow(QMainWindow):
     def update_radius(self, value):
         self.filter_radius = value
         self.ui.label_radius.setText(f"Taille noyau : {value}")
+        self.ui.bouton_valider.click()
 
     def update_taille(self, value):
         self.filter_taille = value
         self.ui.label_taille.setText(f"Taille voisinage : {value}")
+        self.ui.bouton_valider.click()
 
     def update_diametre(self, value):
         self.filter_diametre = value
         self.ui.label_diametre.setText(f"Diamètre voisinage : {value}")
+        self.ui.bouton_valider.click()
 
     def update_var_couleur(self, value):
         self.filter_var_couleur = value
         self.ui.label_var_couleur.setText(f"Variance couleur : {value}")
+        self.ui.bouton_valider.click()
 
     def update_var_spatiale(self, value):
         self.filter_var_spatiale = value
         self.ui.label_var_spatiale.setText(f"Variance spatiale : {value}")
+        self.ui.bouton_valider.click()
 
     def valider_filtres(self, image, choix):
         if choix == 1:
@@ -212,6 +224,15 @@ class MainWindow(QMainWindow):
             imagetemp = ouvrirImageIn(chemin_dossier_temp)
             filtre_laplacien(imagetemp, self)
 
+        self.update_metric(image)
+
+    # MESURES
+
+    def update_metric(self, image):
+        self.metric_PSNR = calculPSNR(image)
+        self.ui.label_PSNR.setText(f"{self.metric_PSNR}")
+        self.metric_SSIM = calculSSIM(image)
+        self.ui.label_SSIM.setText(f"{self.metric_SSIM}")
 
     def ouvrirImage(self):
         options = QFileDialog.Options()

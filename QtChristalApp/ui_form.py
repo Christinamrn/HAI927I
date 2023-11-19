@@ -299,9 +299,15 @@ class Ui_MainWindow(object):
         self.tabWidget_Mesure.setMovable(False)
         self.PSNR = QWidget()
         self.PSNR.setObjectName(u"PSNR")
+        self.label_PSNR = QLabel(self.PSNR)
+        self.label_PSNR.setObjectName(u"label_PSNR")
+        self.label_PSNR.setGeometry(QRect(100, 50, 49, 16))
         self.tabWidget_Mesure.addTab(self.PSNR, "")
         self.SSIM = QWidget()
         self.SSIM.setObjectName(u"SSIM")
+        self.label_SSIM = QLabel(self.SSIM)
+        self.label_SSIM.setObjectName(u"label_SSIM")
+        self.label_SSIM.setGeometry(QRect(70, 70, 49, 16))
         self.tabWidget_Mesure.addTab(self.SSIM, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.background.raise_()
@@ -322,7 +328,7 @@ class Ui_MainWindow(object):
 
         self.tabWidget_cfg.setCurrentIndex(1)
         self.bouton_ouvrirImgIn.setDefault(False)
-        self.tabWidget_Mesure.setCurrentIndex(1)
+        self.tabWidget_Mesure.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -354,7 +360,9 @@ class Ui_MainWindow(object):
         self.tabWidget_cfg.setTabText(self.tabWidget_cfg.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"R\u00e9seau de neurone (pas fait)", None))
         self.labeltext_chemin.setText(QCoreApplication.translate("MainWindow", u"Chemin du fichier ", None))
         self.bouton_ouvrirImgIn.setText(QCoreApplication.translate("MainWindow", u"Ouvrir image", None))
+        self.label_PSNR.setText("")
         self.tabWidget_Mesure.setTabText(self.tabWidget_Mesure.indexOf(self.PSNR), QCoreApplication.translate("MainWindow", u"PSNR", None))
+        self.label_SSIM.setText("")
         self.tabWidget_Mesure.setTabText(self.tabWidget_Mesure.indexOf(self.SSIM), QCoreApplication.translate("MainWindow", u"SSIM", None))
     # retranslateUi
 
