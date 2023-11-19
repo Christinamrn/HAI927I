@@ -276,7 +276,7 @@
        <item>
         <layout class="QVBoxLayout" name="vLay_radius">
          <item>
-          <widget class="QLabel" name="label_3">
+          <widget class="QLabel" name="label_radius">
            <property name="text">
             <string>Taille noyau :</string>
            </property>
@@ -295,9 +295,9 @@
         </layout>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="vLay_var_taille">
+        <layout class="QVBoxLayout" name="vLay_taille">
          <item>
-          <widget class="QLabel" name="label_6">
+          <widget class="QLabel" name="label_taille">
            <property name="text">
             <string>Taille voisinage :</string>
            </property>
@@ -315,7 +315,7 @@
        <item>
         <layout class="QVBoxLayout" name="vLay_ecart_type">
          <item>
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="label_ecart_type">
            <property name="text">
             <string>Ecart-type :</string>
            </property>
@@ -333,7 +333,7 @@
        <item>
         <layout class="QVBoxLayout" name="vLay_diametre">
          <item>
-          <widget class="QLabel" name="label_4">
+          <widget class="QLabel" name="label_diametre">
            <property name="text">
             <string>Diamètre voisinage :</string>
            </property>
@@ -351,7 +351,7 @@
        <item>
         <layout class="QVBoxLayout" name="vLay_var_spatiale">
          <item>
-          <widget class="QLabel" name="label_5">
+          <widget class="QLabel" name="label_var_spatiale">
            <property name="text">
             <string>Variance spatiale :</string>
            </property>
@@ -369,7 +369,7 @@
        <item>
         <layout class="QVBoxLayout" name="vLay_var_couleur">
          <item>
-          <widget class="QLabel" name="label_2">
+          <widget class="QLabel" name="label_var_couleur">
            <property name="text">
             <string>Variance couleur :</string>
            </property>

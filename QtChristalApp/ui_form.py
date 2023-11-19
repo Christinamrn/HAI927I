@@ -124,10 +124,10 @@ class Ui_MainWindow(object):
         self.vLay_options.setContentsMargins(0, 0, 0, 0)
         self.vLay_radius = QVBoxLayout()
         self.vLay_radius.setObjectName(u"vLay_radius")
-        self.label_3 = QLabel(self.verticalLayoutWidget_4)
-        self.label_3.setObjectName(u"label_3")
+        self.label_radius = QLabel(self.verticalLayoutWidget_4)
+        self.label_radius.setObjectName(u"label_radius")
 
-        self.vLay_radius.addWidget(self.label_3)
+        self.vLay_radius.addWidget(self.label_radius)
 
         self.slider_radius = QSlider(self.verticalLayoutWidget_4)
         self.slider_radius.setObjectName(u"slider_radius")
@@ -139,28 +139,28 @@ class Ui_MainWindow(object):
 
         self.vLay_options.addLayout(self.vLay_radius)
 
-        self.vLay_var_taille = QVBoxLayout()
-        self.vLay_var_taille.setObjectName(u"vLay_var_taille")
-        self.label_6 = QLabel(self.verticalLayoutWidget_4)
-        self.label_6.setObjectName(u"label_6")
+        self.vLay_taille = QVBoxLayout()
+        self.vLay_taille.setObjectName(u"vLay_taille")
+        self.label_taille = QLabel(self.verticalLayoutWidget_4)
+        self.label_taille.setObjectName(u"label_taille")
 
-        self.vLay_var_taille.addWidget(self.label_6)
+        self.vLay_taille.addWidget(self.label_taille)
 
         self.slider_taille = QSlider(self.verticalLayoutWidget_4)
         self.slider_taille.setObjectName(u"slider_taille")
         self.slider_taille.setOrientation(Qt.Horizontal)
 
-        self.vLay_var_taille.addWidget(self.slider_taille)
+        self.vLay_taille.addWidget(self.slider_taille)
 
 
-        self.vLay_options.addLayout(self.vLay_var_taille)
+        self.vLay_options.addLayout(self.vLay_taille)
 
         self.vLay_ecart_type = QVBoxLayout()
         self.vLay_ecart_type.setObjectName(u"vLay_ecart_type")
-        self.label = QLabel(self.verticalLayoutWidget_4)
-        self.label.setObjectName(u"label")
+        self.label_ecart_type = QLabel(self.verticalLayoutWidget_4)
+        self.label_ecart_type.setObjectName(u"label_ecart_type")
 
-        self.vLay_ecart_type.addWidget(self.label)
+        self.vLay_ecart_type.addWidget(self.label_ecart_type)
 
         self.slider_ecart_type = QSlider(self.verticalLayoutWidget_4)
         self.slider_ecart_type.setObjectName(u"slider_ecart_type")
@@ -173,10 +173,10 @@ class Ui_MainWindow(object):
 
         self.vLay_diametre = QVBoxLayout()
         self.vLay_diametre.setObjectName(u"vLay_diametre")
-        self.label_4 = QLabel(self.verticalLayoutWidget_4)
-        self.label_4.setObjectName(u"label_4")
+        self.label_diametre = QLabel(self.verticalLayoutWidget_4)
+        self.label_diametre.setObjectName(u"label_diametre")
 
-        self.vLay_diametre.addWidget(self.label_4)
+        self.vLay_diametre.addWidget(self.label_diametre)
 
         self.slider_diametre = QSlider(self.verticalLayoutWidget_4)
         self.slider_diametre.setObjectName(u"slider_diametre")
@@ -189,10 +189,10 @@ class Ui_MainWindow(object):
 
         self.vLay_var_spatiale = QVBoxLayout()
         self.vLay_var_spatiale.setObjectName(u"vLay_var_spatiale")
-        self.label_5 = QLabel(self.verticalLayoutWidget_4)
-        self.label_5.setObjectName(u"label_5")
+        self.label_var_spatiale = QLabel(self.verticalLayoutWidget_4)
+        self.label_var_spatiale.setObjectName(u"label_var_spatiale")
 
-        self.vLay_var_spatiale.addWidget(self.label_5)
+        self.vLay_var_spatiale.addWidget(self.label_var_spatiale)
 
         self.slider_var_spatiale = QSlider(self.verticalLayoutWidget_4)
         self.slider_var_spatiale.setObjectName(u"slider_var_spatiale")
@@ -205,10 +205,10 @@ class Ui_MainWindow(object):
 
         self.vLay_var_couleur = QVBoxLayout()
         self.vLay_var_couleur.setObjectName(u"vLay_var_couleur")
-        self.label_2 = QLabel(self.verticalLayoutWidget_4)
-        self.label_2.setObjectName(u"label_2")
+        self.label_var_couleur = QLabel(self.verticalLayoutWidget_4)
+        self.label_var_couleur.setObjectName(u"label_var_couleur")
 
-        self.vLay_var_couleur.addWidget(self.label_2)
+        self.vLay_var_couleur.addWidget(self.label_var_couleur)
 
         self.slider_var_couleur = QSlider(self.verticalLayoutWidget_4)
         self.slider_var_couleur.setObjectName(u"slider_var_couleur")
@@ -284,12 +284,12 @@ class Ui_MainWindow(object):
         self.radio_bilateral.setText(QCoreApplication.translate("MainWindow", u"Filtrage Bilat\u00e9ral", None))
         self.radio_median.setText(QCoreApplication.translate("MainWindow", u"Filtrage M\u00e9dian", None))
         self.radio_laplacien.setText(QCoreApplication.translate("MainWindow", u"Filtrage Laplacien", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Taille noyau :", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Taille voisinage :", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Ecart-type :", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Diam\u00e8tre voisinage :", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Variance spatiale :", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Variance couleur :", None))
+        self.label_radius.setText(QCoreApplication.translate("MainWindow", u"Taille noyau :", None))
+        self.label_taille.setText(QCoreApplication.translate("MainWindow", u"Taille voisinage :", None))
+        self.label_ecart_type.setText(QCoreApplication.translate("MainWindow", u"Ecart-type :", None))
+        self.label_diametre.setText(QCoreApplication.translate("MainWindow", u"Diam\u00e8tre voisinage :", None))
+        self.label_var_spatiale.setText(QCoreApplication.translate("MainWindow", u"Variance spatiale :", None))
+        self.label_var_couleur.setText(QCoreApplication.translate("MainWindow", u"Variance couleur :", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Filtres), QCoreApplication.translate("MainWindow", u"Filtrages", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"R\u00e9seau de neurone (pas fait)", None))
         self.labeltext_chemin.setText(QCoreApplication.translate("MainWindow", u"Chemin du fichier ", None))

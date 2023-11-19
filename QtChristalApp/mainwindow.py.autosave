@@ -75,13 +75,13 @@ class MainWindow(QMainWindow):
         self.ui.slider_diametre.valueChanged.connect(self.update_diametre)
         self.ui.label_diametre.setText(f"Diamètre voisinage : {self.ui.slider_diametre.value()}")
         # -- var_couleur
-        self.ui.slider_var_couleur.setMinimum(0)
+        self.ui.slider_var_couleur.setMinimum(10)
         self.ui.slider_var_couleur.setMaximum(100)
         self.ui.slider_var_couleur.setValue(self.filter_var_couleur)
         self.ui.slider_var_couleur.valueChanged.connect(self.update_var_couleur)
         self.ui.label_var_couleur.setText(f"Variance couleur : {self.ui.slider_var_couleur.value()}")
         # -- var_spatiale
-        self.ui.slider_var_spatiale.setMinimum(0)
+        self.ui.slider_var_spatiale.setMinimum(10)
         self.ui.slider_var_spatiale.setMaximum(100)
         self.ui.slider_var_spatiale.setValue(self.filter_var_spatiale)
         self.ui.slider_var_spatiale.valueChanged.connect(self.update_var_spatiale)
