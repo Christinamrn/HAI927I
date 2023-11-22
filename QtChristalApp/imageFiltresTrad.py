@@ -58,3 +58,16 @@ def filtre_laplacien(image, MainWindow):
     MainWindow.ImageModified = True
     print(MainWindow.ImageModified)
     MainWindow.affichageImageOut()
+
+#
+def filtre_poissonDN(image_path, MainWindow):
+    image = cv2.imread(image_path)
+    #blablabla
+
+    #filtered_image = ...
+
+
+    #enregistrerImageTmpCV(filtered_image)
+    MainWindow.ImageModified = True
+    print(MainWindow.ImageModified)
+    MainWindow.affichageImageOut()
