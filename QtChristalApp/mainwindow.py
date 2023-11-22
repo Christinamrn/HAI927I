@@ -87,6 +87,8 @@ class MainWindow(QMainWindow):
         self.ui.slider_taille.setMinimum(3)
         self.ui.slider_taille.setMaximum(11)
         self.ui.slider_taille.setSingleStep(2)
+        self.ui.slider_taille.setPageStep(2)
+        self.ui.slider_taille.setTickInterval(2)
         self.ui.slider_taille.setValue(self.filter_taille)
         self.ui.slider_taille.valueChanged.connect(self.update_taille)
         self.ui.label_taille.setText(f"Taille voisinage : { self.ui.slider_taille.value()}")

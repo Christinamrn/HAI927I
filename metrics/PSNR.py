@@ -8,16 +8,28 @@ def calculPSNR(img1_path, img2_path):
     img2 = Image.open(img2_path)
 
     # Conversion des images en tableaux NumPy
-    img1_arr = np.array(img1).astype(np.float64)
-    img2_arr = np.array(img2).astype(np.float64)
+    image_arr = np.array(img1).astype(np.float64)
+    imageout_arr = np.array(img2).astype(np.float64)
 
-    # Calcul de la différence quadratique
-    mse = np.mean((img1_arr - img2_arr) ** 2)
+    if img1.mode == "L" :
 
-    # Calcul du PSNR
-    max_pixel = 255.0
-    PSNR = 20 * np.log10(max_pixel / np.sqrt(mse))
-    return PSNR
+        mse = np.mean((image_arr - imageout_arr) ** 2)
+
+        max_pixel = 255.0
+        PSNR = 10 * np.log10((max_pixel ** 2) / mse)
+        return PSNR
+
+    else :
+        mse_r = np.mean((image_arr[:, :, 0] - imageout_arr[:, :, 0]) ** 2)
+        mse_g = np.mean((image_arr[:, :, 1] - imageout_arr[:, :, 1]) ** 2)
+        mse_b = np.mean((image_arr[:, :, 2] - imageout_arr[:, :, 2]) ** 2)
+
+        mse = (mse_r + mse_g + mse_b) / 3.0
+
+        max_pixel = 255.0
+        psnr_val = 10 * np.log10((max_pixel ** 2) / mse)
+
+        return psnr_val
 
 if len(sys.argv) != 3:
     print("Utilisation : python PSNR.py chemin_img_originale.jpg chemin_img_modifiee.jpg")
