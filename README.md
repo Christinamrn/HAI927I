@@ -25,5 +25,9 @@ Voici comment est organisé le projet avec ses différents dossiers :
 
 * 📁 **metrics** regroupe les fonctions calculant les métriques.
 
-## Application Qt ⚙💻
+## Application Qt 💻
 * 📁 **QtChristalApp** est le dossier contenant l'application en cours de développement. Celle-ci reprend les concepts vu précédemment ainsi que les prochains ajouts sur une interface graphique. Celle-ci est destinée à un utilisateur lambda qui souhaiterait débruiter son image simplement par le biais de notre application. Nous utilisons QtCreator en version Python (QtPy).
+
+## MPRNet 🌐
+Multi-Stage Progressive Image Restoration (CVPR 2021) *Syed Waqas Zamir, Aditya Arora, Salman Khan,Munawar Hayat, Fahad Shahbaz Khan, Ming-Hsuan Yang and Ling Shao* [Paper](https://arxiv.org/pdf/2102.02808.pdf)  | [Code](https://github.com/swz30/MPRNet)
+
