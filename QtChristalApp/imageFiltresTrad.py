@@ -2,6 +2,9 @@
 
 from PIL import Image, ImageFilter, ImageChops
 from imageSettings import enregistrerImageTmp, enregistrerImageTmpCV
+import sys
+sys.path.append("./filters")
+from Papier1 import estimate_photon_density_and_gain,anscombe_transform,bilateral_filter,inverse_anscombe_transform
 import random
 import sys
 import os
@@ -63,11 +66,15 @@ def filtre_laplacien(image, MainWindow):
 def filtre_poissonDN(image_path, MainWindow):
     image = cv2.imread(image_path)
     #blablabla
-
-    #filtered_image = ...
-
-
-    #enregistrerImageTmpCV(filtered_image)
+    img_array = np.array(image)
+    gamma = estimate_photon_density_and_gain(img_array)
+    img_array = img_array / gamma
+    img_array = anscombe_transform(img_array)
+    img_array = bilateral_filter(img_array,7, 0.5)
+    img_array = inverse_anscombe_transform(img_array)
+    img_array = img_array * gamma 
+    filtered_image = np.clip(img_array, 0, 255).astype(np.uint8)
+    enregistrerImageTmp(filtered_image)
     MainWindow.ImageModified = True
     print(MainWindow.ImageModified)
     MainWindow.affichageImageOut()
