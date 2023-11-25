@@ -43,13 +43,16 @@ def estimate_photon_density_and_gain(image, window_size=11, sigma=2, theta=2):
                     totalMean+=(mean_values_original[index][0] +mean_values_original[index][1]+mean_values_original[index][2])/3
                     nbTotal+=1
                 index+=1
-            totalMean/=nbTotal
-            totalVariance/=nbTotal
-            gamma = totalMean/totalVariance
-            image2 = image2 / gamma 
-            image2 = anscombe_transform(image2)
-            currentVar=np.var(image2)
-            seuil += 0.5
+            if nbTotal !=0:
+                totalMean/=nbTotal
+                totalVariance/=nbTotal
+                gamma = totalMean/totalVariance
+                image2 = image2 / gamma 
+                image2 = anscombe_transform(image2)
+                currentVar=np.var(image2)
+            else:
+                currentVar=0
+            seuil += 1
     else:
         # Estimation de la moyenne et de la variance pour chaque région
         variance_values_smoothed = [np.var(smoothed_image[region_x:region_x + window_size, region_y:region_y + window_size]) for (region_x, region_y) in regions]
@@ -72,13 +75,16 @@ def estimate_photon_density_and_gain(image, window_size=11, sigma=2, theta=2):
                     totalMean+=mean_values_original[index]
                     nbTotal+=1
                 index+=1
-            totalMean/=nbTotal
-            totalVariance/=nbTotal
-            gamma = totalMean/totalVariance
-            image2 = image2 / gamma 
-            image2 = anscombe_transform(image2)
-            currentVar=np.var(image2)
-            seuil += 0.5
+            if nbTotal != 0:
+                totalMean/=nbTotal
+                totalVariance/=nbTotal
+                gamma = totalMean/totalVariance
+                image2 = image2 / gamma 
+                image2 = anscombe_transform(image2)
+                currentVar=np.var(image2)
+            else:
+                currentVar=0
+            seuil += 1
     return gamma
 
 def bilateral_filter(image, sigma_spatial=2.5, sigma_intensity=0.1):
