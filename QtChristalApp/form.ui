@@ -62,7 +62,7 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>105</x>
       <y>450</y>
       <width>500</width>
       <height>500</height>
@@ -94,7 +94,7 @@
    <widget class="QFrame" name="frame_ImgOut">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>1315</x>
       <y>450</y>
       <width>500</width>
       <height>500</height>
@@ -167,7 +167,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="GenBruit">
      <attribute name="title">
@@ -177,7 +177,7 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>90</y>
+        <y>110</y>
         <width>361</width>
         <height>104</height>
        </rect>
@@ -263,6 +263,19 @@
         </spacer>
        </item>
       </layout>
+     </widget>
+     <widget class="QPushButton" name="bouton_bruitSet">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>260</y>
+        <width>131</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Image déjà bruitée</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="Filtres">
@@ -538,10 +551,10 @@
    <widget class="QTabWidget" name="tabWidget_Mesure">
     <property name="geometry">
      <rect>
-      <x>1560</x>
-      <y>110</y>
-      <width>261</width>
-      <height>161</height>
+      <x>1570</x>
+      <y>30</y>
+      <width>331</width>
+      <height>221</height>
      </rect>
     </property>
     <property name="tabPosition">
@@ -656,12 +669,48 @@
      </widget>
     </widget>
    </widget>
+   <widget class="QFrame" name="frame_ImgBruit">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>450</y>
+      <width>500</width>
+      <height>500</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_ImgBruit">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>500</width>
+       <height>500</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Appliquer une modification</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
    <zorder>background</zorder>
    <zorder>frame_ImgIn</zorder>
    <zorder>frame_ImgOut</zorder>
    <zorder>tabWidget_cfg</zorder>
    <zorder>frame</zorder>
    <zorder>tabWidget_Mesure</zorder>
+   <zorder>frame_ImgBruit</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
