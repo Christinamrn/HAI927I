@@ -52,7 +52,7 @@ def estimate_photon_density_and_gain(image, window_size=11, sigma=2, theta=2):
                 currentVar=np.var(image2)
             else:
                 currentVar=0
-            seuil += 1
+            seuil += 0.5
     else:
         # Estimation de la moyenne et de la variance pour chaque région
         variance_values_smoothed = [np.var(smoothed_image[region_x:region_x + window_size, region_y:region_y + window_size]) for (region_x, region_y) in regions]
@@ -84,7 +84,7 @@ def estimate_photon_density_and_gain(image, window_size=11, sigma=2, theta=2):
                 currentVar=np.var(image2)
             else:
                 currentVar=0
-            seuil += 1
+            seuil += 0.5
     return gamma
 
 def bilateral_filter(image, sigma_spatial=2.5, sigma_intensity=0.1):
