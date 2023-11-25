@@ -12,6 +12,7 @@ from imageSettings import *
 from imageGenNoises import *
 from imageFiltresTrad import *
 from imageMesure import *
+from imageMPRNet import with_MPRNet
 
 # Important:
 # You need to run the following command to generate the ui_form.py file
@@ -156,7 +157,7 @@ class MainWindow(QMainWindow):
 
         self.ui.bouton_valider.clicked.connect(lambda : self.valider_filtres(image, self.choix_filtre))
 
-
+        self.ui.bouton_MPRNet.clicked.connect(lambda : with_MPRNet(image.filename, self))
 
     def affichageImageOut(self):
         print("affichage...")

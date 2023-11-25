@@ -167,7 +167,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="GenBruit">
      <attribute name="title">
@@ -481,10 +481,23 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="ReseauNeurone">
      <attribute name="title">
-      <string>Réseau de neurone (pas fait)</string>
+      <string>Réseau de neurone</string>
      </attribute>
+     <widget class="QPushButton" name="bouton_MPRNet">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>150</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>MPRNet</string>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QFrame" name="frame">
