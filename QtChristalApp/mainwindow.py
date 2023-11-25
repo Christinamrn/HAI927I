@@ -36,7 +36,8 @@ class MainWindow(QMainWindow):
         #Variables Booléennes
         self.ImageInIsSet = False
         self.ImageNdg = False
-        self.ImageModified = False
+        self.ImageIsAlreadyNoisy = False
+        self.ImageIsFiltered = False
 
         #Variables quantitatives
         self.noise_ecart_type = 20
@@ -54,9 +55,11 @@ class MainWindow(QMainWindow):
         self.metric_SSIM = None
 
         #Initialisation params
+        # OUTILS BRUITS/FILTRES
         self.ui.tabWidget_cfg.setVisible(False)
-        self.ui.tabWidget_cfg.setCurrentIndex(1)
+        self.ui.tabWidget_cfg.setCurrentIndex(0) #Démarrage position sur onglet "gen bruit"
 
+        # PSNR/SSIM/etc...
         self.ui.tabWidget_Mesure.setVisible(False)
 
         #Sliders GENERATEURS BRUIT
@@ -128,6 +131,33 @@ class MainWindow(QMainWindow):
         #self.ui.bouton_chromatique.setEnabled(False)
         #self.ui.bouton_afficher.clicked.connect(lambda : self.affichageImageOut())
 
+    def affichageImageNoisy(self):
+        if(self.ImageIsAlreadyNoisy):
+            self.ui.frame_ImgIn.setVisible(False)
+        chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmpNoisy.jpg"
+        ImgNoisy = QImage(chemin_dossier_temp)
+        largeur_ImgNoisy = ImgNoisy.width()
+        hauteur_ImgNoisy = ImgNoisy.height()
+        if largeur_ImgNoisy > hauteur_ImgNoisy :
+            ImgNoisy = ImgNoisy.scaledToWidth(self.largeur_frame, Qt.SmoothTransformation)
+        else:
+            ImgNoisy = ImgNoisy.scaledToHeight(self.hauteur_frame, Qt.SmoothTransformation)
+        self.ui.label_ImgNoisy.setPixmap(QPixmap.fromImage(ImgNoisy))
+
+        image = ouvrirImageIn(chemin_dossier_temp)
+        #Lien entre les boutons liés à "image" et les fonctions de filtrage
+        self.ui.radio_gaussien.toggled.connect(lambda : self.set_choix_filtre(1))
+        self.ui.radio_bilateral.toggled.connect(lambda : self.set_choix_filtre(2))
+        self.ui.radio_moyenneur.toggled.connect(lambda : self.set_choix_filtre(3))
+        self.ui.radio_median.toggled.connect(lambda : self.set_choix_filtre(4))
+        self.ui.radio_laplacien.toggled.connect(lambda : self.set_choix_filtre(5))
+        self.ui.radio_laplacien.setEnabled(False)
+        self.ui.radio_papier.toggled.connect(lambda : self.set_choix_filtre(6))
+
+        self.ui.bouton_valider.clicked.connect(lambda : self.valider_filtres(image, self.choix_filtre))
+
+
+
     def affichageImageOut(self):
         print("affichage...")
         chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
@@ -142,7 +172,7 @@ class MainWindow(QMainWindow):
             ImgOut = ImgOut.scaledToHeight(self.hauteur_frame, Qt.SmoothTransformation)
         self.ui.label_ImgOut.setPixmap(QPixmap.fromImage(ImgOut))
 
-        if self.ImageModified == True:
+        if self.ImageIsFiltered == True: #Affichage Laplacien seulement si l'image a été filtrée une première fois par un autre filtrage
             self.ui.radio_laplacien.setEnabled(True)
 
 
@@ -170,6 +200,7 @@ class MainWindow(QMainWindow):
     def set_choix_filtre(self, choix):
         self.choix_filtre = choix
         self.set_choix_filtre_var(choix)
+        self.ui.bouton_valider.click()
 
     def set_choix_filtre_var(self, choix):
         #print("set_choix_filtre_var called with choix =", choix)
@@ -227,7 +258,10 @@ class MainWindow(QMainWindow):
             chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
             imagetemp = ouvrirImageIn(chemin_dossier_temp)
             filtre_laplacien(imagetemp, self)
+        elif choix == 6:
+            filtre_poissonDN(image.filename, self)
 
+        #Update de la mesure de l'image de base avec l'image de fin
         self.update_metric(image)
         self.ui.tabWidget_Mesure.setVisible(True)
 
@@ -264,30 +298,24 @@ class MainWindow(QMainWindow):
 
             #Si l'image d'origine est définie
             if(self.ImageInIsSet):
-                self.ui.tabWidget_cfg.setVisible(True)
+                self.ui.tabWidget_cfg.setVisible(True) #Affichage fenêtre des outils de modifications
                 #Gen Noise
-                if(self.ImageNdg):
+                if(self.ImageNdg):  #Image en niveaux de gris
                     self.ui.bouton_poivresel.setVisible(True)
                     self.ui.bouton_gaussien.setVisible(True)
                     self.set_choix_noise(1)
-                else:
+                else:               #Image en couleurs
                     self.ui.bouton_chromatique.setVisible(True)
                     self.set_choix_noise(1)
                 #Filtres
 
-            #Lien entre les boutons liés à "image" et les fonctions
+            #Lien entre les boutons liés à "image" et les fonctions de bruitage
             self.ui.bouton_poivresel.clicked.connect(lambda : bruit_poivre_et_sel(image, self.noise_densite, self))
             self.ui.bouton_gaussien.clicked.connect(lambda : bruit_gaussien(image, self.noise_ecart_type, self))
             self.ui.bouton_chromatique.clicked.connect(lambda : bruit_chromatique(image, self.noise_ecart_type, self))
+            self.ui.bouton_deja_bruitee.clicked.connect(lambda : deja_bruitee(image, self))
 
-            self.ui.radio_gaussien.toggled.connect(lambda : self.set_choix_filtre(1))
-            self.ui.radio_bilateral.toggled.connect(lambda : self.set_choix_filtre(2))
-            self.ui.radio_moyenneur.toggled.connect(lambda : self.set_choix_filtre(3))
-            self.ui.radio_median.toggled.connect(lambda : self.set_choix_filtre(4))
-            self.ui.radio_laplacien.toggled.connect(lambda : self.set_choix_filtre(5))
-            self.ui.radio_laplacien.setEnabled(False)
 
-            self.ui.bouton_valider.clicked.connect(lambda : self.valider_filtres(image, self.choix_filtre))
 
 
 

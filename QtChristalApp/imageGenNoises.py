@@ -1,14 +1,18 @@
 # This Python file uses the following encoding: utf-8
 
 from PIL import Image
-from imageSettings import enregistrerImageTmp
+from imageSettings import enregistrerImageTmp, enregistrerImageTmpNoisy
 import random
 import sys
 import os
 import numpy as np
+import copy
+
+#A la fin de chaque bruitage, on modifie la valeur de ImageIsNoisy pour dire qu'elle a été bruitée
 
 # Bruit chromatique
 def bruit_chromatique(image, ecart_type, MainWindow):
+    image = copy.deepcopy(image)
     largeur, hauteur = image.size
 
     for x in range(largeur):
@@ -24,14 +28,13 @@ def bruit_chromatique(image, ecart_type, MainWindow):
             new_pixel = (new_r, new_g, new_b)
 
             image.putpixel((x, y), new_pixel)
-    enregistrerImageTmp(image)
-    MainWindow.ImageModified = True
-    print(MainWindow.ImageModified)
-    MainWindow.affichageImageOut()
+    enregistrerImageTmpNoisy(image)
+    MainWindow.affichageImageNoisy()
 
 
 #Bruit gaussien
 def bruit_gaussien(image, ecart_type, MainWindow):
+    image = copy.deepcopy(image)
     largeur, hauteur = image.size
 
     for x in range(largeur):
@@ -40,13 +43,13 @@ def bruit_gaussien(image, ecart_type, MainWindow):
             pixel = image.getpixel((x, y))
             new_pixel = max(0, min(pixel + bruit, 255))
             image.putpixel((x, y), new_pixel)
-    enregistrerImageTmp(image)
-    MainWindow.ImageModified = True
-    MainWindow.affichageImageOut()
+    enregistrerImageTmpNoisy(image)
+    MainWindow.affichageImageNoisy()
 
 
 #Bruit poivre et sel
 def bruit_poivre_et_sel(image, densite, MainWindow):
+    image = copy.deepcopy(image)
     largeur, hauteur = image.size
 
     for x in range(largeur):
@@ -55,6 +58,11 @@ def bruit_poivre_et_sel(image, densite, MainWindow):
                 bruit = random.randint(0, 255)
                 new_pixel = min(bruit, 255)
                 image.putpixel((x, y), new_pixel)
-    enregistrerImageTmp(image)
-    MainWindow.ImageModified = True
-    MainWindow.affichageImageOut()
+    enregistrerImageTmpNoisy(image)
+    MainWindow.affichageImageNoisy()
+
+#Déjà bruitée
+def deja_bruitee(image, MainWindow):
+    enregistrerImageTmpNoisy(image)
+    MainWindow.ImageIsAlreadyNoisy = True
+    MainWindow.affichageImageNoisy()

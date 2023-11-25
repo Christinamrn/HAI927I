@@ -24,6 +24,16 @@ def enregistrerImageTmpCV(image):
     print(chemin_dossier_temp)
     cv2.imwrite(chemin_dossier_temp, image)
 
+def enregistrerImageTmpNoisy(image):
+    chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmpNoisy.jpg"
+    print(chemin_dossier_temp)
+    image.save(chemin_dossier_temp)
+
+def enregistrerImageTmpNoisyCV(image):
+    chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmpNoisy.jpg"
+    print(chemin_dossier_temp)
+    cv2.imwrite(chemin_dossier_temp, image)
+
 def conversion_ndg(image):
     image.convert("L")
 
