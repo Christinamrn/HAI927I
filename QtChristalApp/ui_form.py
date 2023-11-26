@@ -67,7 +67,7 @@ class Ui_MainWindow(object):
         self.tabWidget_cfg = QTabWidget(self.centralwidget)
         self.tabWidget_cfg.setObjectName(u"tabWidget_cfg")
         self.tabWidget_cfg.setEnabled(True)
-        self.tabWidget_cfg.setGeometry(QRect(640, 10, 601, 361))
+        self.tabWidget_cfg.setGeometry(QRect(640, 10, 601, 341))
         self.GenBruit = QWidget()
         self.GenBruit.setObjectName(u"GenBruit")
         self.gridLayoutWidget = QWidget(self.GenBruit)
@@ -279,29 +279,94 @@ class Ui_MainWindow(object):
         self.bouton_MPRNet.setObjectName(u"bouton_MPRNet")
         self.bouton_MPRNet.setGeometry(QRect(260, 150, 75, 24))
         self.tabWidget_cfg.addTab(self.ReseauNeurone, "")
-        self.frame = QFrame(self.centralwidget)
-        self.frame.setObjectName(u"frame")
-        self.frame.setGeometry(QRect(70, 30, 411, 261))
-        self.frame.setAutoFillBackground(False)
-        self.frame.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.frame.setFrameShape(QFrame.Box)
-        self.frame.setFrameShadow(QFrame.Raised)
-        self.labeltext_chemin = QLabel(self.frame)
+        self.frame_ouvertureImg = QFrame(self.centralwidget)
+        self.frame_ouvertureImg.setObjectName(u"frame_ouvertureImg")
+        self.frame_ouvertureImg.setGeometry(QRect(70, 30, 400, 200))
+        self.frame_ouvertureImg.setAutoFillBackground(False)
+        self.frame_ouvertureImg.setFrameShape(QFrame.NoFrame)
+        self.frame_ouvertureImg.setFrameShadow(QFrame.Plain)
+        self.labeltext_chemin = QLabel(self.frame_ouvertureImg)
         self.labeltext_chemin.setObjectName(u"labeltext_chemin")
-        self.labeltext_chemin.setGeometry(QRect(50, 80, 301, 41))
+        self.labeltext_chemin.setGeometry(QRect(50, 80, 300, 40))
         self.labeltext_chemin.setAutoFillBackground(False)
+        self.labeltext_chemin.setStyleSheet(u"border: 2px inset #32194d; ")
         self.labeltext_chemin.setFrameShape(QFrame.Box)
         self.labeltext_chemin.setFrameShadow(QFrame.Plain)
         self.labeltext_chemin.setScaledContents(True)
         self.labeltext_chemin.setAlignment(Qt.AlignJustify|Qt.AlignVCenter)
         self.labeltext_chemin.setWordWrap(False)
         self.labeltext_chemin.setMargin(5)
-        self.bouton_ouvrirImgIn = QPushButton(self.frame)
+        self.bouton_ouvrirImgIn = QPushButton(self.frame_ouvertureImg)
         self.bouton_ouvrirImgIn.setObjectName(u"bouton_ouvrirImgIn")
-        self.bouton_ouvrirImgIn.setGeometry(QRect(160, 170, 75, 24))
+        self.bouton_ouvrirImgIn.setGeometry(QRect(160, 150, 75, 24))
         self.bouton_ouvrirImgIn.setAutoFillBackground(False)
         self.bouton_ouvrirImgIn.setCheckable(False)
         self.bouton_ouvrirImgIn.setFlat(False)
+        self.label_background = QLabel(self.frame_ouvertureImg)
+        self.label_background.setObjectName(u"label_background")
+        self.label_background.setGeometry(QRect(0, 0, 400, 200))
+        self.label_background.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"border: 2px inset #32194d; \n"
+"border-bottom-left-radius: 10px;\n"
+"border-bottom-right-radius: 10px;")
+        self.frame_barre_taches_5 = QFrame(self.frame_ouvertureImg)
+        self.frame_barre_taches_5.setObjectName(u"frame_barre_taches_5")
+        self.frame_barre_taches_5.setGeometry(QRect(0, 0, 400, 30))
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frame_barre_taches_5.sizePolicy().hasHeightForWidth())
+        self.frame_barre_taches_5.setSizePolicy(sizePolicy)
+        self.frame_barre_taches_5.setLayoutDirection(Qt.LeftToRight)
+        self.frame_barre_taches_5.setStyleSheet(u"border: 2px inset #32194d; \n"
+"border-top-left-radius: 0;\n"
+"border-top-right-radius: 0;\n"
+"border-bottom-left-radius: 0;\n"
+"border-bottom-right-radius: 0;")
+        self.frame_barre_taches_5.setFrameShape(QFrame.NoFrame)
+        self.frame_barre_taches_5.setFrameShadow(QFrame.Plain)
+        self.horizontalLayoutWidget_11 = QWidget(self.frame_barre_taches_5)
+        self.horizontalLayoutWidget_11.setObjectName(u"horizontalLayoutWidget_11")
+        self.horizontalLayoutWidget_11.setGeometry(QRect(0, 0, 401, 31))
+        self.horizontalLayout_10 = QHBoxLayout(self.horizontalLayoutWidget_11)
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.horizontalLayout_10.setContentsMargins(0, 0, 0, 0)
+        self.horizontalSpacer_19 = QSpacerItem(10, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_10.addItem(self.horizontalSpacer_19)
+
+        self.label_textebarre_5 = QLabel(self.horizontalLayoutWidget_11)
+        self.label_textebarre_5.setObjectName(u"label_textebarre_5")
+        self.label_textebarre_5.setStyleSheet(u"border:0;\n"
+"background-color: rgba(0, 0, 0, 0); \n"
+"\n"
+"")
+
+        self.horizontalLayout_10.addWidget(self.label_textebarre_5)
+
+        self.bouton_rouge_5 = QFrame(self.horizontalLayoutWidget_11)
+        self.bouton_rouge_5.setObjectName(u"bouton_rouge_5")
+        self.bouton_rouge_5.setMaximumSize(QSize(15, 15))
+        self.bouton_rouge_5.setStyleSheet(u"border-radius: 7px;\n"
+"background-color: #d46464;")
+        self.bouton_rouge_5.setFrameShape(QFrame.StyledPanel)
+        self.bouton_rouge_5.setFrameShadow(QFrame.Raised)
+
+        self.horizontalLayout_10.addWidget(self.bouton_rouge_5)
+
+        self.horizontalSpacer_20 = QSpacerItem(10, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_10.addItem(self.horizontalSpacer_20)
+
+        self.label_barretaches_background_5 = QLabel(self.frame_ouvertureImg)
+        self.label_barretaches_background_5.setObjectName(u"label_barretaches_background_5")
+        self.label_barretaches_background_5.setGeometry(QRect(0, 0, 401, 30))
+        self.label_barretaches_background_5.setStyleSheet(u"background-color: #fff3b0;")
+        self.label_background.raise_()
+        self.label_barretaches_background_5.raise_()
+        self.labeltext_chemin.raise_()
+        self.bouton_ouvrirImgIn.raise_()
+        self.frame_barre_taches_5.raise_()
         self.tabWidget_Mesure = QTabWidget(self.centralwidget)
         self.tabWidget_Mesure.setObjectName(u"tabWidget_Mesure")
         self.tabWidget_Mesure.setGeometry(QRect(1570, 30, 331, 221))
@@ -363,12 +428,216 @@ class Ui_MainWindow(object):
         self.bouton_save_ImgOut = QPushButton(self.centralwidget)
         self.bouton_save_ImgOut.setObjectName(u"bouton_save_ImgOut")
         self.bouton_save_ImgOut.setGeometry(QRect(1830, 960, 75, 24))
+        self.frame_ImgIn_background = QFrame(self.centralwidget)
+        self.frame_ImgIn_background.setObjectName(u"frame_ImgIn_background")
+        self.frame_ImgIn_background.setGeometry(QRect(80, 400, 550, 570))
+        self.frame_ImgIn_background.setAutoFillBackground(False)
+        self.frame_ImgIn_background.setFrameShape(QFrame.NoFrame)
+        self.frame_ImgIn_background.setFrameShadow(QFrame.Plain)
+        self.label_ImgIn_background = QLabel(self.frame_ImgIn_background)
+        self.label_ImgIn_background.setObjectName(u"label_ImgIn_background")
+        self.label_ImgIn_background.setGeometry(QRect(0, 0, 550, 570))
+        self.label_ImgIn_background.setAutoFillBackground(False)
+        self.label_ImgIn_background.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"border: 2px inset #32194d; \n"
+"border-bottom-left-radius: 10px;\n"
+"border-bottom-right-radius: 10px;")
+        self.frame_barre_taches = QFrame(self.frame_ImgIn_background)
+        self.frame_barre_taches.setObjectName(u"frame_barre_taches")
+        self.frame_barre_taches.setGeometry(QRect(0, 0, 550, 30))
+        sizePolicy.setHeightForWidth(self.frame_barre_taches.sizePolicy().hasHeightForWidth())
+        self.frame_barre_taches.setSizePolicy(sizePolicy)
+        self.frame_barre_taches.setLayoutDirection(Qt.LeftToRight)
+        self.frame_barre_taches.setStyleSheet(u"border: 2px inset #32194d; \n"
+"border-top-left-radius: 0;\n"
+"border-top-right-radius: 0;\n"
+"border-bottom-left-radius: 0;\n"
+"border-bottom-right-radius: 0;")
+        self.frame_barre_taches.setFrameShape(QFrame.NoFrame)
+        self.frame_barre_taches.setFrameShadow(QFrame.Plain)
+        self.horizontalLayoutWidget_7 = QWidget(self.frame_barre_taches)
+        self.horizontalLayoutWidget_7.setObjectName(u"horizontalLayoutWidget_7")
+        self.horizontalLayoutWidget_7.setGeometry(QRect(0, 0, 551, 31))
+        self.horizontalLayout_6 = QHBoxLayout(self.horizontalLayoutWidget_7)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
+        self.horizontalSpacer_11 = QSpacerItem(10, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_11)
+
+        self.label_textebarre = QLabel(self.horizontalLayoutWidget_7)
+        self.label_textebarre.setObjectName(u"label_textebarre")
+        self.label_textebarre.setStyleSheet(u"border:0;\n"
+"background-color: rgba(0, 0, 0, 0); \n"
+"\n"
+"")
+
+        self.horizontalLayout_6.addWidget(self.label_textebarre)
+
+        self.bouton_rouge = QFrame(self.horizontalLayoutWidget_7)
+        self.bouton_rouge.setObjectName(u"bouton_rouge")
+        self.bouton_rouge.setMaximumSize(QSize(15, 15))
+        self.bouton_rouge.setStyleSheet(u"border-radius: 7px;\n"
+"background-color: #d46464;")
+        self.bouton_rouge.setFrameShape(QFrame.StyledPanel)
+        self.bouton_rouge.setFrameShadow(QFrame.Raised)
+
+        self.horizontalLayout_6.addWidget(self.bouton_rouge)
+
+        self.horizontalSpacer_12 = QSpacerItem(10, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_12)
+
+        self.label_barretaches_background = QLabel(self.frame_ImgIn_background)
+        self.label_barretaches_background.setObjectName(u"label_barretaches_background")
+        self.label_barretaches_background.setGeometry(QRect(0, 0, 550, 30))
+        self.label_barretaches_background.setStyleSheet(u"background-color: #d1d1f0;")
+        self.label_ImgIn_background.raise_()
+        self.label_barretaches_background.raise_()
+        self.frame_barre_taches.raise_()
+        self.frame_ImgNoisy_background = QFrame(self.centralwidget)
+        self.frame_ImgNoisy_background.setObjectName(u"frame_ImgNoisy_background")
+        self.frame_ImgNoisy_background.setGeometry(QRect(685, 400, 550, 570))
+        self.frame_ImgNoisy_background.setAutoFillBackground(False)
+        self.frame_ImgNoisy_background.setFrameShape(QFrame.NoFrame)
+        self.frame_ImgNoisy_background.setFrameShadow(QFrame.Plain)
+        self.label_ImgNoisy_background = QLabel(self.frame_ImgNoisy_background)
+        self.label_ImgNoisy_background.setObjectName(u"label_ImgNoisy_background")
+        self.label_ImgNoisy_background.setGeometry(QRect(0, 0, 550, 570))
+        self.label_ImgNoisy_background.setAutoFillBackground(False)
+        self.label_ImgNoisy_background.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"border: 2px inset #32194d; \n"
+"border-bottom-left-radius: 10px;\n"
+"border-bottom-right-radius: 10px;")
+        self.frame_barre_taches_3 = QFrame(self.frame_ImgNoisy_background)
+        self.frame_barre_taches_3.setObjectName(u"frame_barre_taches_3")
+        self.frame_barre_taches_3.setGeometry(QRect(0, 0, 550, 30))
+        sizePolicy.setHeightForWidth(self.frame_barre_taches_3.sizePolicy().hasHeightForWidth())
+        self.frame_barre_taches_3.setSizePolicy(sizePolicy)
+        self.frame_barre_taches_3.setLayoutDirection(Qt.LeftToRight)
+        self.frame_barre_taches_3.setStyleSheet(u"border: 2px inset #32194d; \n"
+"border-top-left-radius: 0;\n"
+"border-top-right-radius: 0;\n"
+"border-bottom-left-radius: 0;\n"
+"border-bottom-right-radius: 0;")
+        self.frame_barre_taches_3.setFrameShape(QFrame.NoFrame)
+        self.frame_barre_taches_3.setFrameShadow(QFrame.Plain)
+        self.horizontalLayoutWidget_9 = QWidget(self.frame_barre_taches_3)
+        self.horizontalLayoutWidget_9.setObjectName(u"horizontalLayoutWidget_9")
+        self.horizontalLayoutWidget_9.setGeometry(QRect(0, 0, 551, 31))
+        self.horizontalLayout_8 = QHBoxLayout(self.horizontalLayoutWidget_9)
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
+        self.horizontalSpacer_15 = QSpacerItem(10, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_8.addItem(self.horizontalSpacer_15)
+
+        self.label_textebarre_3 = QLabel(self.horizontalLayoutWidget_9)
+        self.label_textebarre_3.setObjectName(u"label_textebarre_3")
+        self.label_textebarre_3.setStyleSheet(u"border:0;\n"
+"background-color: rgba(0, 0, 0, 0); \n"
+"\n"
+"")
+
+        self.horizontalLayout_8.addWidget(self.label_textebarre_3)
+
+        self.bouton_rouge_3 = QFrame(self.horizontalLayoutWidget_9)
+        self.bouton_rouge_3.setObjectName(u"bouton_rouge_3")
+        self.bouton_rouge_3.setMaximumSize(QSize(15, 15))
+        self.bouton_rouge_3.setStyleSheet(u"border-radius: 7px;\n"
+"background-color: #d46464;")
+        self.bouton_rouge_3.setFrameShape(QFrame.StyledPanel)
+        self.bouton_rouge_3.setFrameShadow(QFrame.Raised)
+
+        self.horizontalLayout_8.addWidget(self.bouton_rouge_3)
+
+        self.horizontalSpacer_16 = QSpacerItem(10, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_8.addItem(self.horizontalSpacer_16)
+
+        self.label_barretaches_background_3 = QLabel(self.frame_ImgNoisy_background)
+        self.label_barretaches_background_3.setObjectName(u"label_barretaches_background_3")
+        self.label_barretaches_background_3.setGeometry(QRect(0, 0, 550, 30))
+        self.label_barretaches_background_3.setStyleSheet(u"background-color: #f5cac3;")
+        self.label_ImgNoisy_background.raise_()
+        self.label_barretaches_background_3.raise_()
+        self.frame_barre_taches_3.raise_()
+        self.frame_ImgOut_background = QFrame(self.centralwidget)
+        self.frame_ImgOut_background.setObjectName(u"frame_ImgOut_background")
+        self.frame_ImgOut_background.setGeometry(QRect(1290, 400, 550, 570))
+        self.frame_ImgOut_background.setAutoFillBackground(False)
+        self.frame_ImgOut_background.setFrameShape(QFrame.NoFrame)
+        self.frame_ImgOut_background.setFrameShadow(QFrame.Plain)
+        self.label_ImgOut_background = QLabel(self.frame_ImgOut_background)
+        self.label_ImgOut_background.setObjectName(u"label_ImgOut_background")
+        self.label_ImgOut_background.setGeometry(QRect(0, 0, 550, 570))
+        self.label_ImgOut_background.setAutoFillBackground(False)
+        self.label_ImgOut_background.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"border: 2px inset #32194d; \n"
+"border-bottom-left-radius: 10px;\n"
+"border-bottom-right-radius: 10px;")
+        self.frame_barre_taches_4 = QFrame(self.frame_ImgOut_background)
+        self.frame_barre_taches_4.setObjectName(u"frame_barre_taches_4")
+        self.frame_barre_taches_4.setGeometry(QRect(0, 0, 550, 30))
+        sizePolicy.setHeightForWidth(self.frame_barre_taches_4.sizePolicy().hasHeightForWidth())
+        self.frame_barre_taches_4.setSizePolicy(sizePolicy)
+        self.frame_barre_taches_4.setLayoutDirection(Qt.LeftToRight)
+        self.frame_barre_taches_4.setStyleSheet(u"border: 2px inset #32194d; \n"
+"border-top-left-radius: 0;\n"
+"border-top-right-radius: 0;\n"
+"border-bottom-left-radius: 0;\n"
+"border-bottom-right-radius: 0;")
+        self.frame_barre_taches_4.setFrameShape(QFrame.NoFrame)
+        self.frame_barre_taches_4.setFrameShadow(QFrame.Plain)
+        self.horizontalLayoutWidget_10 = QWidget(self.frame_barre_taches_4)
+        self.horizontalLayoutWidget_10.setObjectName(u"horizontalLayoutWidget_10")
+        self.horizontalLayoutWidget_10.setGeometry(QRect(0, 0, 551, 31))
+        self.horizontalLayout_9 = QHBoxLayout(self.horizontalLayoutWidget_10)
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.horizontalLayout_9.setContentsMargins(0, 0, 0, 0)
+        self.horizontalSpacer_17 = QSpacerItem(10, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_9.addItem(self.horizontalSpacer_17)
+
+        self.label_textebarre_4 = QLabel(self.horizontalLayoutWidget_10)
+        self.label_textebarre_4.setObjectName(u"label_textebarre_4")
+        self.label_textebarre_4.setStyleSheet(u"border:0;\n"
+"background-color: rgba(0, 0, 0, 0); \n"
+"\n"
+"")
+
+        self.horizontalLayout_9.addWidget(self.label_textebarre_4)
+
+        self.bouton_rouge_4 = QFrame(self.horizontalLayoutWidget_10)
+        self.bouton_rouge_4.setObjectName(u"bouton_rouge_4")
+        self.bouton_rouge_4.setMaximumSize(QSize(15, 15))
+        self.bouton_rouge_4.setStyleSheet(u"border-radius: 7px;\n"
+"background-color: #d46464;")
+        self.bouton_rouge_4.setFrameShape(QFrame.StyledPanel)
+        self.bouton_rouge_4.setFrameShadow(QFrame.Raised)
+
+        self.horizontalLayout_9.addWidget(self.bouton_rouge_4)
+
+        self.horizontalSpacer_18 = QSpacerItem(10, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_9.addItem(self.horizontalSpacer_18)
+
+        self.label_barretaches_background_4 = QLabel(self.frame_ImgOut_background)
+        self.label_barretaches_background_4.setObjectName(u"label_barretaches_background_4")
+        self.label_barretaches_background_4.setGeometry(QRect(0, 0, 550, 30))
+        self.label_barretaches_background_4.setStyleSheet(u"background-color: #cad2c5;")
+        self.label_ImgOut_background.raise_()
+        self.label_barretaches_background_4.raise_()
+        self.frame_barre_taches_4.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
         self.background.raise_()
+        self.frame_ImgOut_background.raise_()
+        self.frame_ImgNoisy_background.raise_()
+        self.frame_ImgIn_background.raise_()
         self.frame_ImgIn.raise_()
         self.frame_ImgOut.raise_()
         self.tabWidget_cfg.raise_()
-        self.frame.raise_()
+        self.frame_ouvertureImg.raise_()
         self.tabWidget_Mesure.raise_()
         self.frame_ImgNoisy.raise_()
         self.bouton_save_ImgNoisy.raise_()
@@ -421,6 +690,8 @@ class Ui_MainWindow(object):
         self.tabWidget_cfg.setTabText(self.tabWidget_cfg.indexOf(self.ReseauNeurone), QCoreApplication.translate("MainWindow", u"R\u00e9seau de neurone", None))
         self.labeltext_chemin.setText(QCoreApplication.translate("MainWindow", u"Chemin du fichier ", None))
         self.bouton_ouvrirImgIn.setText(QCoreApplication.translate("MainWindow", u"Ouvrir image", None))
+        self.label_textebarre_5.setText(QCoreApplication.translate("MainWindow", u"Ouvrir une image", None))
+        self.label_barretaches_background_5.setText("")
         self.label_PSNR.setText("")
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"dB", None))
         self.tabWidget_Mesure.setTabText(self.tabWidget_Mesure.indexOf(self.PSNR), QCoreApplication.translate("MainWindow", u"PSNR", None))
@@ -430,5 +701,11 @@ class Ui_MainWindow(object):
         self.label_ImgNoisy.setText(QCoreApplication.translate("MainWindow", u"Appliquer une modification", None))
         self.bouton_save_ImgNoisy.setText(QCoreApplication.translate("MainWindow", u"Sauvegarder l'image bruit\u00e9e", None))
         self.bouton_save_ImgOut.setText(QCoreApplication.translate("MainWindow", u"Sauvegarder l'image d\u00e9bruit\u00e9e", None))
+        self.label_textebarre.setText(QCoreApplication.translate("MainWindow", u"Image Originale", None))
+        self.label_barretaches_background.setText("")
+        self.label_textebarre_3.setText(QCoreApplication.translate("MainWindow", u"Image Bruit\u00e9e", None))
+        self.label_barretaches_background_3.setText("")
+        self.label_textebarre_4.setText(QCoreApplication.translate("MainWindow", u"Image D\u00e9bruit\u00e9e", None))
+        self.label_barretaches_background_4.setText("")
     # retranslateUi
 
