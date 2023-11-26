@@ -63,6 +63,8 @@ class MainWindow(QMainWindow):
         # OUTILS BRUITS/FILTRES
         self.ui.tabWidget_cfg.setVisible(False)
         self.ui.tabWidget_cfg.setCurrentIndex(0) #Démarrage position sur onglet "gen bruit"
+        self.ui.tabWidget_cfg.setTabEnabled(1, False)
+        self.ui.tabWidget_cfg.setTabEnabled(2, False)
 
         # PSNR/SSIM/etc...
         self.ui.tabWidget_Mesure.setVisible(False)
@@ -136,6 +138,19 @@ class MainWindow(QMainWindow):
         #self.ui.bouton_chromatique.setEnabled(False)
         #self.ui.bouton_afficher.clicked.connect(lambda : self.affichageImageOut())
 
+        #Visibilité des fenêtres
+        self.ui.frame_ImgIn_background.setVisible(False)
+        self.ui.frame_ImgIn.setVisible(False)
+        self.ui.frame_ImgNoisy_background.setVisible(False)
+        self.ui.frame_ImgNoisy.setVisible(False)
+        self.ui.frame_ImgOut_background.setVisible(False)
+        self.ui.frame_ImgOut.setVisible(False)
+
+        self.ui.frame_tabWidget.setVisible(False)
+        self.ui.frame_metriques.setVisible(False)
+
+
+
     #------------------------
     # AFFICHAGE Image bruitée
     #------------------------
@@ -143,6 +158,7 @@ class MainWindow(QMainWindow):
     def affichageImageNoisy(self):
         if(self.ImageIsAlreadyNoisy):
             self.ui.frame_ImgIn.setVisible(False)
+            self.ui.frame_ImgIn_background.setVisible(False)
         chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmpNoisy.jpg"
         ImgNoisy = QImage(chemin_dossier_temp)
         largeur_ImgNoisy = ImgNoisy.width()
@@ -153,8 +169,14 @@ class MainWindow(QMainWindow):
             ImgNoisy = ImgNoisy.scaledToHeight(self.hauteur_frame, Qt.SmoothTransformation)
         self.ui.label_ImgNoisy.setPixmap(QPixmap.fromImage(ImgNoisy))
 
+        self.ui.frame_ImgNoisy_background.setVisible(True)
+        self.ui.frame_ImgNoisy.setVisible(True)
+
         image = ouvrirImageIn(chemin_dossier_temp)
+
         #Lien entre les boutons liés à "image" et les fonctions de filtrage
+        self.ui.tabWidget_cfg.setTabEnabled(1, True)
+        self.ui.tabWidget_cfg.setTabEnabled(2, True)
         self.ui.radio_gaussien.toggled.connect(lambda : self.set_choix_filtre(1))
         self.ui.radio_bilateral.toggled.connect(lambda : self.set_choix_filtre(2))
         self.ui.radio_moyenneur.toggled.connect(lambda : self.set_choix_filtre(3))
@@ -167,7 +189,7 @@ class MainWindow(QMainWindow):
 
         self.ui.bouton_MPRNet.clicked.connect(lambda : with_MPRNet(image.filename, self))
 
-        self.ui.bouton_save_ImgNoisy.clicked.connect(lambda : self.sauvegardeImage(image))
+        self.ui.bouton_save_ImgNoisy.clicked.connect(lambda : self.sauvegardeImage(image, 1))
 
     #---------------------------------
     # AFFICHAGE Image Filtrée (Sortie)
@@ -187,14 +209,20 @@ class MainWindow(QMainWindow):
             ImgOut = ImgOut.scaledToHeight(self.hauteur_frame, Qt.SmoothTransformation)
         self.ui.label_ImgOut.setPixmap(QPixmap.fromImage(ImgOut))
 
+        self.ui.frame_ImgOut_background.setVisible(True)
+        self.ui.frame_ImgOut.setVisible(True)
+
+        image = ouvrirImageIn(chemin_dossier_temp)
+
         if self.ImageIsFiltered == True: #Affichage Laplacien seulement si l'image a été filtrée une première fois par un autre filtrage
             self.ui.radio_laplacien.setEnabled(True)
 
         #Update de la mesure de l'image de base avec l'image de fin
+        self.ui.frame_metriques.setVisible(True)
         self.update_metric(self.ImageIn)
         self.ui.tabWidget_Mesure.setVisible(True)
 
-        self.ui.bouton_save_ImgOut.clicked.connect(lambda : self.sauvegardeImage(self, image))
+        self.ui.bouton_save_ImgOut.clicked.connect(lambda : self.sauvegardeImage(image, 2))
 
 
     # GENERATEURS BRUIT
@@ -301,10 +329,14 @@ class MainWindow(QMainWindow):
     # SAUVEGARDE images
     #------------------
 
-    def sauvegardeImage(self,image):
+    def sauvegardeImage(self, image, mode):
         options = QFileDialog.Options()
         #options |= QFileDialog.DontUseNativeDialog
-        file_name, _ = QFileDialog.getSaveFileName(self, "Enregistrer l'image", self.ImageIn_path, "Images (*.jpg)", options=options)
+        if(mode == 1):
+            mode_nom = "bruitée"
+        else:
+            mode_nom = "débruitée"
+        file_name, _ = QFileDialog.getSaveFileName(self, "Enregistrer l'image " + mode_nom, self.ImageIn_path, "Images (*.jpg)", options=options)
 
         if file_name:
             self.image.save(file_name)
@@ -333,6 +365,9 @@ class MainWindow(QMainWindow):
                 ImgIn = ImgIn.scaledToHeight(self.hauteur_frame, Qt.SmoothTransformation)
             self.ui.label_ImgIn.setPixmap(QPixmap.fromImage(ImgIn))
 
+            self.ui.frame_ImgIn_background.setVisible(True)
+            self.ui.frame_ImgIn.setVisible(True)
+
             #Définition de l'image en PIL
             image = ouvrirImageIn(fileName)
 
@@ -356,6 +391,7 @@ class MainWindow(QMainWindow):
                 #Filtres
 
             #Lien entre les boutons liés à "image" et les fonctions de bruitage
+            self.ui.frame_tabWidget.setVisible(True)
             self.ui.bouton_poivresel.clicked.connect(lambda : bruit_poivre_et_sel(image, self.noise_densite, self))
             self.ui.bouton_gaussien.clicked.connect(lambda : bruit_gaussien(image, self.noise_ecart_type, self))
             self.ui.bouton_chromatique.clicked.connect(lambda : bruit_chromatique(image, self.noise_ecart_type, self))

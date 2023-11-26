@@ -154,363 +154,11 @@
      <string/>
     </property>
    </widget>
-   <widget class="QTabWidget" name="tabWidget_cfg">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>890</x>
-      <y>0</y>
-      <width>601</width>
-      <height>341</height>
-     </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="currentIndex">
-     <number>1</number>
-    </property>
-    <widget class="QWidget" name="GenBruit">
-     <attribute name="title">
-      <string>Générateur de bruit</string>
-     </attribute>
-     <widget class="QWidget" name="gridLayoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>110</y>
-        <width>361</width>
-        <height>116</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="1" column="2">
-        <widget class="QPushButton" name="bouton_poivresel">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="text">
-          <string>PoivreEtSel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QPushButton" name="bouton_chromatique">
-         <property name="text">
-          <string>Chromatique</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="bouton_gaussien">
-         <property name="text">
-          <string>Gaussien</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <layout class="QVBoxLayout" name="vLay_ecart_type" stretch="0,0">
-         <property name="sizeConstraint">
-          <enum>QLayout::SetDefaultConstraint</enum>
-         </property>
-         <item>
-          <widget class="QLabel" name="label_ecart_type">
-           <property name="text">
-            <string>Ecart-type :</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSlider" name="slider_ecart_type">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="1" column="0">
-        <layout class="QVBoxLayout" name="vLay_densite">
-         <item>
-          <widget class="QLabel" name="label_densite">
-           <property name="text">
-            <string>Densité :</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSlider" name="slider_densite">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="0" column="1">
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QPushButton" name="bouton_deja_bruitee">
-      <property name="geometry">
-       <rect>
-        <x>240</x>
-        <y>260</y>
-        <width>131</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Image déjà bruitée</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="Filtres">
-     <attribute name="title">
-      <string>Filtrages</string>
-     </attribute>
-     <widget class="QPushButton" name="bouton_valider">
-      <property name="geometry">
-       <rect>
-        <x>510</x>
-        <y>280</y>
-        <width>75</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Valider</string>
-      </property>
-     </widget>
-     <widget class="QWidget" name="horizontalLayoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>251</width>
-        <height>128</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="hLay_filtres">
-       <item>
-        <layout class="QVBoxLayout" name="vLa_filtres">
-         <item>
-          <widget class="QRadioButton" name="radio_gaussien">
-           <property name="text">
-            <string>Filtrage Gaussien</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radio_moyenneur">
-           <property name="text">
-            <string>Filtrage Moyenneur</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radio_bilateral">
-           <property name="text">
-            <string>Filtrage Bilatéral</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radio_median">
-           <property name="text">
-            <string>Filtrage Médian</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radio_papier">
-           <property name="text">
-            <string>Filtrage Papier*</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="radio_laplacien">
-         <property name="text">
-          <string>Filtrage Laplacien</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="verticalLayoutWidget_4">
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>0</y>
-        <width>160</width>
-        <height>308</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="vLay_options_filter">
-       <item>
-        <layout class="QVBoxLayout" name="vLay_radius">
-         <item>
-          <widget class="QLabel" name="label_radius">
-           <property name="text">
-            <string>Taille noyau :</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSlider" name="slider_radius">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="invertedControls">
-            <bool>false</bool>
-           </property>
-           <property name="tickPosition">
-            <enum>QSlider::NoTicks</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="vLay_taille">
-         <item>
-          <widget class="QLabel" name="label_taille">
-           <property name="text">
-            <string>Taille voisinage :</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSlider" name="slider_taille">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="vLay_diametre">
-         <item>
-          <widget class="QLabel" name="label_diametre">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="text">
-            <string>Diamètre voisinage :</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSlider" name="slider_diametre">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="vLay_var_spatiale">
-         <item>
-          <widget class="QLabel" name="label_var_spatiale">
-           <property name="text">
-            <string>Variance spatiale :</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSlider" name="slider_var_spatiale">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="vLay_var_couleur">
-         <item>
-          <widget class="QLabel" name="label_var_couleur">
-           <property name="text">
-            <string>Variance couleur :</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSlider" name="slider_var_couleur">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QLabel" name="label_papier">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>260</y>
-        <width>251</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>*Filtrage Papier : méthode implémentée</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="ReseauNeurone">
-     <attribute name="title">
-      <string>Réseau de neurone</string>
-     </attribute>
-     <widget class="QPushButton" name="bouton_MPRNet">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>150</y>
-        <width>75</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>MPRNet</string>
-      </property>
-     </widget>
-    </widget>
-   </widget>
    <widget class="QFrame" name="frame_ouvertureImg">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>30</y>
+      <x>155</x>
+      <y>100</y>
       <width>400</width>
       <height>200</height>
      </rect>
@@ -577,12 +225,6 @@
       <string>Ouvrir image</string>
      </property>
      <property name="checkable">
-      <bool>false</bool>
-     </property>
-     <property name="default">
-      <bool>false</bool>
-     </property>
-     <property name="flat">
       <bool>false</bool>
      </property>
     </widget>
@@ -733,127 +375,6 @@ background-color: #d46464;</string>
     <zorder>bouton_ouvrirImgIn</zorder>
     <zorder>frame_barre_taches_5</zorder>
    </widget>
-   <widget class="QTabWidget" name="tabWidget_Mesure">
-    <property name="geometry">
-     <rect>
-      <x>1570</x>
-      <y>30</y>
-      <width>331</width>
-      <height>221</height>
-     </rect>
-    </property>
-    <property name="tabPosition">
-     <enum>QTabWidget::North</enum>
-    </property>
-    <property name="tabShape">
-     <enum>QTabWidget::Rounded</enum>
-    </property>
-    <property name="currentIndex">
-     <number>1</number>
-    </property>
-    <property name="elideMode">
-     <enum>Qt::ElideNone</enum>
-    </property>
-    <property name="documentMode">
-     <bool>false</bool>
-    </property>
-    <property name="tabsClosable">
-     <bool>false</bool>
-    </property>
-    <property name="movable">
-     <bool>false</bool>
-    </property>
-    <widget class="QWidget" name="PSNR">
-     <attribute name="title">
-      <string>PSNR</string>
-     </attribute>
-     <widget class="QWidget" name="horizontalLayoutWidget_2">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>30</y>
-        <width>161</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QLabel" name="label_PSNR">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>15</width>
-           <height>5</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>dB</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="SSIM">
-     <attribute name="title">
-      <string>SSIM</string>
-     </attribute>
-     <widget class="QLabel" name="label_SSIM">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>70</y>
-        <width>49</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>70</y>
-        <width>241</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Un coefficient de 1 indique une similarité parfaite entre les deux images.</string>
-      </property>
-      <property name="textFormat">
-       <enum>Qt::AutoText</enum>
-      </property>
-      <property name="scaledContents">
-       <bool>false</bool>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-      <property name="wordWrap">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
-   </widget>
    <widget class="QFrame" name="frame_ImgNoisy">
     <property name="enabled">
      <bool>true</bool>
@@ -888,32 +409,6 @@ background-color: #d46464;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-   </widget>
-   <widget class="QPushButton" name="bouton_save_ImgNoisy">
-    <property name="geometry">
-     <rect>
-      <x>1240</x>
-      <y>960</y>
-      <width>75</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Sauvegarder l'image bruitée</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="bouton_save_ImgOut">
-    <property name="geometry">
-     <rect>
-      <x>1830</x>
-      <y>960</y>
-      <width>75</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Sauvegarder l'image débruitée</string>
-    </property>
    </widget>
    <widget class="QFrame" name="frame_ImgIn_background">
     <property name="geometry">
@@ -1189,6 +684,22 @@ background-color: rgba(0, 0, 0, 0);
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="bouton_save_ImgNoisy">
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="text">
+          <string>Sauvegarder</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QFrame" name="bouton_rouge_3">
          <property name="maximumSize">
           <size>
@@ -1355,6 +866,22 @@ background-color: rgba(0, 0, 0, 0);
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="bouton_save_ImgOut">
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="text">
+          <string>Sauvegarder</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QFrame" name="bouton_rouge_4">
          <property name="maximumSize">
           <size>
@@ -1413,18 +940,839 @@ background-color: #d46464;</string>
     <zorder>label_barretaches_background_4</zorder>
     <zorder>frame_barre_taches_4</zorder>
    </widget>
+   <widget class="QFrame" name="frame_tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>30</y>
+      <width>620</width>
+      <height>320</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QTabWidget" name="tabWidget_cfg">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>600</width>
+       <height>261</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="GenBruit">
+      <attribute name="title">
+       <string>Générateur de bruit</string>
+      </attribute>
+      <widget class="QWidget" name="gridLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>40</y>
+         <width>361</width>
+         <height>116</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="1" column="2">
+         <widget class="QPushButton" name="bouton_poivresel">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>PoivreEtSel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QPushButton" name="bouton_chromatique">
+          <property name="text">
+           <string>Chromatique</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="bouton_gaussien">
+          <property name="text">
+           <string>Gaussien</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="vLay_ecart_type" stretch="0,0">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetDefaultConstraint</enum>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_ecart_type">
+            <property name="text">
+             <string>Ecart-type :</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="slider_ecart_type">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <layout class="QVBoxLayout" name="vLay_densite">
+          <item>
+           <widget class="QLabel" name="label_densite">
+            <property name="text">
+             <string>Densité :</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="slider_densite">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="1">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QPushButton" name="bouton_deja_bruitee">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>200</y>
+         <width>131</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Image déjà bruitée</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="Filtres">
+      <attribute name="title">
+       <string>Filtrages</string>
+      </attribute>
+      <widget class="QPushButton" name="bouton_valider">
+       <property name="geometry">
+        <rect>
+         <x>510</x>
+         <y>190</y>
+         <width>75</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Valider</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="horizontalLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>251</width>
+         <height>128</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="hLay_filtres">
+        <item>
+         <layout class="QVBoxLayout" name="vLa_filtres">
+          <item>
+           <widget class="QRadioButton" name="radio_gaussien">
+            <property name="text">
+             <string>Filtrage Gaussien</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radio_moyenneur">
+            <property name="text">
+             <string>Filtrage Moyenneur</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radio_bilateral">
+            <property name="text">
+             <string>Filtrage Bilatéral</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radio_median">
+            <property name="text">
+             <string>Filtrage Médian</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radio_papier">
+            <property name="text">
+             <string>Filtrage Papier*</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="radio_laplacien">
+          <property name="text">
+           <string>Filtrage Laplacien</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QLabel" name="label_papier">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>150</y>
+         <width>251</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>*Filtrage Papier : méthode implémentée</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="gridLayoutWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>270</x>
+         <y>10</y>
+         <width>321</width>
+         <height>152</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gLay_options_filter">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <item row="1" column="1">
+         <layout class="QVBoxLayout" name="vLay_var_spatiale">
+          <item>
+           <widget class="QLabel" name="label_var_spatiale">
+            <property name="text">
+             <string>Variance spatiale :</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="slider_var_spatiale">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="1">
+         <layout class="QVBoxLayout" name="vLay_diametre">
+          <item>
+           <widget class="QLabel" name="label_diametre">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="text">
+             <string>Diamètre voisinage :</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="slider_diametre">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <layout class="QVBoxLayout" name="vLay_taille">
+          <item>
+           <widget class="QLabel" name="label_taille">
+            <property name="text">
+             <string>Taille voisinage :</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="slider_taille">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="vLay_radius">
+          <item>
+           <widget class="QLabel" name="label_radius">
+            <property name="text">
+             <string>Taille noyau :</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="slider_radius">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="invertedControls">
+             <bool>false</bool>
+            </property>
+            <property name="tickPosition">
+             <enum>QSlider::NoTicks</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="1">
+         <layout class="QVBoxLayout" name="vLay_var_couleur">
+          <item>
+           <widget class="QLabel" name="label_var_couleur">
+            <property name="text">
+             <string>Variance couleur :</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="slider_var_couleur">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="ReseauNeurone">
+      <attribute name="title">
+       <string>Réseau de neurone</string>
+      </attribute>
+      <widget class="QPushButton" name="bouton_MPRNet">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>80</y>
+         <width>75</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>MPRNet</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QLabel" name="label_background_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>620</width>
+       <height>320</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+border: 2px inset #32194d; 
+border-bottom-left-radius: 10px;
+border-bottom-right-radius: 10px;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_barretaches_background_6">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>620</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #bde0fe;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_barre_taches_6">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>620</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 2px inset #32194d; 
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+border-bottom-left-radius: 0;
+border-bottom-right-radius: 0;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <widget class="QWidget" name="horizontalLayoutWidget_13">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>621</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_12">
+       <item>
+        <spacer name="horizontalSpacer_23">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>10</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_textebarre_7">
+         <property name="styleSheet">
+          <string notr="true">border:0;
+background-color: rgba(0, 0, 0, 0); 
+
+</string>
+         </property>
+         <property name="text">
+          <string>Outils</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="bouton_rouge_7">
+         <property name="maximumSize">
+          <size>
+           <width>15</width>
+           <height>15</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-radius: 7px;
+background-color: #d46464;</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_24">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>10</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <zorder>label_background_2</zorder>
+    <zorder>tabWidget_cfg</zorder>
+    <zorder>label_barretaches_background_6</zorder>
+    <zorder>frame_barre_taches_6</zorder>
+   </widget>
+   <widget class="QFrame" name="frame_metriques">
+    <property name="geometry">
+     <rect>
+      <x>1355</x>
+      <y>100</y>
+      <width>400</width>
+      <height>200</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_background_3">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>400</width>
+       <height>200</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+border: 2px inset #32194d; 
+border-bottom-left-radius: 10px;
+border-bottom-right-radius: 10px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_barretaches_background_7">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>401</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #f2cc8f;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_barre_taches_7">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>400</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 2px inset #32194d; 
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+border-bottom-left-radius: 0;
+border-bottom-right-radius: 0;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <widget class="QWidget" name="horizontalLayoutWidget_14">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>401</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_13">
+       <item>
+        <spacer name="horizontalSpacer_25">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>10</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_textebarre_8">
+         <property name="styleSheet">
+          <string notr="true">border:0;
+background-color: rgba(0, 0, 0, 0); 
+
+</string>
+         </property>
+         <property name="text">
+          <string>Métriques</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="bouton_rouge_8">
+         <property name="maximumSize">
+          <size>
+           <width>15</width>
+           <height>15</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-radius: 7px;
+background-color: #d46464;</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_26">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>10</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QTabWidget" name="tabWidget_Mesure">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>40</y>
+       <width>300</width>
+       <height>150</height>
+      </rect>
+     </property>
+     <property name="tabPosition">
+      <enum>QTabWidget::North</enum>
+     </property>
+     <property name="tabShape">
+      <enum>QTabWidget::Rounded</enum>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <property name="elideMode">
+      <enum>Qt::ElideNone</enum>
+     </property>
+     <property name="documentMode">
+      <bool>false</bool>
+     </property>
+     <property name="tabsClosable">
+      <bool>false</bool>
+     </property>
+     <property name="movable">
+      <bool>false</bool>
+     </property>
+     <widget class="QWidget" name="PSNR">
+      <attribute name="title">
+       <string>PSNR</string>
+      </attribute>
+      <widget class="QWidget" name="horizontalLayoutWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>40</y>
+         <width>161</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_PSNR">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>15</width>
+            <height>5</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>dB</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="SSIM">
+      <attribute name="title">
+       <string>SSIM</string>
+      </attribute>
+      <widget class="QLabel" name="label_SSIM">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>30</y>
+         <width>49</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>280</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Un coefficient de 1 indique une similarité parfaite entre les deux images.</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+       <property name="scaledContents">
+        <bool>false</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_titre">
+    <property name="geometry">
+     <rect>
+      <x>1720</x>
+      <y>0</y>
+      <width>201</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Meow Script</family>
+      <pointsize>40</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: grey;</string>
+    </property>
+    <property name="text">
+     <string>Christal</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
    <zorder>background</zorder>
    <zorder>frame_ImgOut_background</zorder>
    <zorder>frame_ImgNoisy_background</zorder>
    <zorder>frame_ImgIn_background</zorder>
    <zorder>frame_ImgIn</zorder>
    <zorder>frame_ImgOut</zorder>
-   <zorder>tabWidget_cfg</zorder>
    <zorder>frame_ouvertureImg</zorder>
-   <zorder>tabWidget_Mesure</zorder>
    <zorder>frame_ImgNoisy</zorder>
-   <zorder>bouton_save_ImgNoisy</zorder>
-   <zorder>bouton_save_ImgOut</zorder>
+   <zorder>frame_tabWidget</zorder>
+   <zorder>frame_metriques</zorder>
+   <zorder>label_titre</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
