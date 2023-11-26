@@ -9,6 +9,7 @@
 * [Compte rendu n°2](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Comptes%20Rendus/%5BHAI927I%5D%20Christal%20-%20CR2.pdf)
 * [Compte rendu n°3](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Comptes%20Rendus/%5BHAI927I%5D%20Christal%20-%20CR3.pdf)
 * [Compte rendu n°4](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Comptes%20Rendus/%5BHAI927I%5D%20Christal%20-%20CR4.pdf)
+* [Compte rendu n°5](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Comptes%20Rendus/%5BHAI927I%5D%20Christal%20-%20CR5.pdf)
 
 ## Fonctionnement du git ⚙️
 Voici comment est organisé le projet avec ses différents dossiers :
@@ -31,3 +32,4 @@ Voici comment est organisé le projet avec ses différents dossiers :
 ## MPRNet 🌐
 Multi-Stage Progressive Image Restoration (CVPR 2021) *Syed Waqas Zamir, Aditya Arora, Salman Khan,Munawar Hayat, Fahad Shahbaz Khan, Ming-Hsuan Yang and Ling Shao* [Paper](https://arxiv.org/pdf/2102.02808.pdf)  | [Code](https://github.com/swz30/MPRNet)
 
+Nous utilisons MPRNet dans notre code avec les modèles pré-entraînés disponibles sur le github mentionné.
