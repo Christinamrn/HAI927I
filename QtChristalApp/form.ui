@@ -167,7 +167,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="GenBruit">
      <attribute name="title">
@@ -737,6 +737,32 @@
      </property>
     </widget>
    </widget>
+   <widget class="QPushButton" name="bouton_save_ImgNoisy">
+    <property name="geometry">
+     <rect>
+      <x>1240</x>
+      <y>960</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sauvegarder l'image bruitée</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bouton_save_ImgOut">
+    <property name="geometry">
+     <rect>
+      <x>1830</x>
+      <y>960</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sauvegarder l'image débruitée</string>
+    </property>
+   </widget>
    <zorder>background</zorder>
    <zorder>frame_ImgIn</zorder>
    <zorder>frame_ImgOut</zorder>
@@ -744,6 +770,8 @@
    <zorder>frame</zorder>
    <zorder>tabWidget_Mesure</zorder>
    <zorder>frame_ImgNoisy</zorder>
+   <zorder>bouton_save_ImgNoisy</zorder>
+   <zorder>bouton_save_ImgOut</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

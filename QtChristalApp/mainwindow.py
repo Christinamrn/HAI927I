@@ -5,7 +5,7 @@ import cv2
 
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QFileDialog, QDialog
 from PySide6.QtGui import QPixmap, QImage, QTransform
-from PySide6.QtCore import QObject, Slot, Qt, QSize
+from PySide6.QtCore import QObject, Slot, Qt, QSize, QStandardPaths
 #from PyQt6.QtCore import QObject, pyqtSlot, Qt, QSize
 from PIL import Image
 from imageSettings import *
@@ -33,6 +33,10 @@ class MainWindow(QMainWindow):
         #Mesure des frames des Imgs In/Out
         self.largeur_frame = self.ui.frame_ImgIn.width()
         self.hauteur_frame = self.ui.frame_ImgIn.height()
+
+        #Image origine
+        self.ImageIn = None
+        self.ImageIn_path = None
 
         #Variables Booléennes
         self.ImageInIsSet = False
@@ -132,6 +136,10 @@ class MainWindow(QMainWindow):
         #self.ui.bouton_chromatique.setEnabled(False)
         #self.ui.bouton_afficher.clicked.connect(lambda : self.affichageImageOut())
 
+    #------------------------
+    # AFFICHAGE Image bruitée
+    #------------------------
+
     def affichageImageNoisy(self):
         if(self.ImageIsAlreadyNoisy):
             self.ui.frame_ImgIn.setVisible(False)
@@ -159,6 +167,12 @@ class MainWindow(QMainWindow):
 
         self.ui.bouton_MPRNet.clicked.connect(lambda : with_MPRNet(image.filename, self))
 
+        self.ui.bouton_save_ImgNoisy.clicked.connect(lambda : self.sauvegardeImage(image))
+
+    #---------------------------------
+    # AFFICHAGE Image Filtrée (Sortie)
+    #---------------------------------
+
     def affichageImageOut(self):
         print("affichage...")
         chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
@@ -176,6 +190,12 @@ class MainWindow(QMainWindow):
         if self.ImageIsFiltered == True: #Affichage Laplacien seulement si l'image a été filtrée une première fois par un autre filtrage
             self.ui.radio_laplacien.setEnabled(True)
 
+        #Update de la mesure de l'image de base avec l'image de fin
+        self.update_metric(self.ImageIn)
+        self.ui.tabWidget_Mesure.setVisible(True)
+
+        self.ui.bouton_save_ImgOut.clicked.connect(lambda : self.sauvegardeImage(self, image))
+
 
     # GENERATEURS BRUIT
 
@@ -192,6 +212,7 @@ class MainWindow(QMainWindow):
         self.ui.slider_densite.setEnabled(False)
         if choix == 1:
             self.ui.slider_ecart_type.setEnabled(True)
+            self.ui.slider_densite.setEnabled(True)
         elif choix == 2:
             self.ui.slider_densite.setEnabled(True)
 
@@ -262,23 +283,44 @@ class MainWindow(QMainWindow):
         elif choix == 6:
             filtre_poissonDN(image.filename, self)
 
-        #Update de la mesure de l'image de base avec l'image de fin
-        self.update_metric(image)
-        self.ui.tabWidget_Mesure.setVisible(True)
+#        #Update de la mesure de l'image de base avec l'image de fin
+#        self.update_metric(image)
+#        self.ui.tabWidget_Mesure.setVisible(True)
 
+    #---------
     # MESURES
+    #---------
 
     def update_metric(self, image):
         self.metric_PSNR = calculPSNR(image)
-        self.ui.label_PSNR.setText(f"{self.metric_PSNR}")
+        self.ui.label_PSNR.setText(f"{self.metric_PSNR:.2f}")
         self.metric_SSIM = calculSSIM(image)
-        self.ui.label_SSIM.setText(f"{self.metric_SSIM}")
+        self.ui.label_SSIM.setText(f"{self.metric_SSIM:.2f}")
+
+    #------------------
+    # SAUVEGARDE images
+    #------------------
+
+    def sauvegardeImage(self,image):
+        options = QFileDialog.Options()
+        #options |= QFileDialog.DontUseNativeDialog
+        file_name, _ = QFileDialog.getSaveFileName(self, "Enregistrer l'image", self.ImageIn_path, "Images (*.jpg)", options=options)
+
+        if file_name:
+            self.image.save(file_name)
+            print(f"L'image a été enregistrée sous {file_name}")
+
+    #---------------------
+    #   OUVERTURE Image In
+    #---------------------
 
     def ouvrirImage(self):
         options = QFileDialog.Options()
-        fileName, _ = QFileDialog.getOpenFileName(self, "Sélectionner une image", "", "Images (*.jpg *.jpeg)", options=options)
+        dossierimage_path = QStandardPaths.writableLocation(QStandardPaths.PicturesLocation)
+        fileName, _ = QFileDialog.getOpenFileName(self, "Sélectionner une image", dossierimage_path, "Images (*.jpg *.jpeg)", options=options)
         if fileName:
             #Affichage du chemin de l'image sur l'UI
+            self.ImageIn_path = fileName
             self.ui.labeltext_chemin.setText(fileName)
             #Conversion Image en QPixmap
             ImgIn = QImage(fileName)
@@ -295,6 +337,7 @@ class MainWindow(QMainWindow):
             image = ouvrirImageIn(fileName)
 
             self.ImageInIsSet = True
+            self.ImageIn = image
             self.ImageNdg = IsNdg(image)
 
             #Si l'image d'origine est définie
@@ -307,6 +350,8 @@ class MainWindow(QMainWindow):
                     self.set_choix_noise(1)
                 else:               #Image en couleurs
                     self.ui.bouton_chromatique.setVisible(True)
+                    self.ui.bouton_gaussien.setVisible(True)
+                    self.ui.bouton_poivresel.setVisible(True)
                     self.set_choix_noise(1)
                 #Filtres
 
@@ -315,11 +360,6 @@ class MainWindow(QMainWindow):
             self.ui.bouton_gaussien.clicked.connect(lambda : bruit_gaussien(image, self.noise_ecart_type, self))
             self.ui.bouton_chromatique.clicked.connect(lambda : bruit_chromatique(image, self.noise_ecart_type, self))
             self.ui.bouton_deja_bruitee.clicked.connect(lambda : deja_bruitee(image, self))
-
-
-
-
-
 
 
 

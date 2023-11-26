@@ -357,6 +357,12 @@ class Ui_MainWindow(object):
         self.label_ImgNoisy.setObjectName(u"label_ImgNoisy")
         self.label_ImgNoisy.setGeometry(QRect(0, 0, 500, 500))
         self.label_ImgNoisy.setAlignment(Qt.AlignCenter)
+        self.bouton_save_ImgNoisy = QPushButton(self.centralwidget)
+        self.bouton_save_ImgNoisy.setObjectName(u"bouton_save_ImgNoisy")
+        self.bouton_save_ImgNoisy.setGeometry(QRect(1240, 960, 75, 24))
+        self.bouton_save_ImgOut = QPushButton(self.centralwidget)
+        self.bouton_save_ImgOut.setObjectName(u"bouton_save_ImgOut")
+        self.bouton_save_ImgOut.setGeometry(QRect(1830, 960, 75, 24))
         MainWindow.setCentralWidget(self.centralwidget)
         self.background.raise_()
         self.frame_ImgIn.raise_()
@@ -365,6 +371,8 @@ class Ui_MainWindow(object):
         self.frame.raise_()
         self.tabWidget_Mesure.raise_()
         self.frame_ImgNoisy.raise_()
+        self.bouton_save_ImgNoisy.raise_()
+        self.bouton_save_ImgOut.raise_()
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
         self.menubar.setGeometry(QRect(0, 0, 1920, 22))
@@ -375,7 +383,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget_cfg.setCurrentIndex(2)
+        self.tabWidget_cfg.setCurrentIndex(0)
         self.bouton_ouvrirImgIn.setDefault(False)
         self.tabWidget_Mesure.setCurrentIndex(0)
 
@@ -420,5 +428,7 @@ class Ui_MainWindow(object):
         self.label.setText(QCoreApplication.translate("MainWindow", u"Un coefficient de 1 indique une similarit\u00e9 parfaite entre les deux images.", None))
         self.tabWidget_Mesure.setTabText(self.tabWidget_Mesure.indexOf(self.SSIM), QCoreApplication.translate("MainWindow", u"SSIM", None))
         self.label_ImgNoisy.setText(QCoreApplication.translate("MainWindow", u"Appliquer une modification", None))
+        self.bouton_save_ImgNoisy.setText(QCoreApplication.translate("MainWindow", u"Sauvegarder l'image bruit\u00e9e", None))
+        self.bouton_save_ImgOut.setText(QCoreApplication.translate("MainWindow", u"Sauvegarder l'image d\u00e9bruit\u00e9e", None))
     # retranslateUi
 
