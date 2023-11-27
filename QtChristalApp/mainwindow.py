@@ -191,6 +191,10 @@ class MainWindow(QMainWindow):
 
         self.ui.bouton_save_ImgNoisy.clicked.connect(lambda : self.sauvegardeImage(image, 1))
 
+        self.ui.frame_ImgOut_background.setVisible(False)
+        self.ui.frame_ImgOut.setVisible(False)
+        self.ui.frame_metriques.setVisible(False)
+
     #---------------------------------
     # AFFICHAGE Image Filtrée (Sortie)
     #---------------------------------
@@ -367,6 +371,10 @@ class MainWindow(QMainWindow):
 
             self.ui.frame_ImgIn_background.setVisible(True)
             self.ui.frame_ImgIn.setVisible(True)
+            self.ui.frame_ImgNoisy_background.setVisible(False)
+            self.ui.frame_ImgNoisy.setVisible(False)
+            self.ui.frame_ImgOut_background.setVisible(False)
+            self.ui.frame_ImgOut.setVisible(False)
 
             #Définition de l'image en PIL
             image = ouvrirImageIn(fileName)
@@ -397,6 +405,7 @@ class MainWindow(QMainWindow):
             self.ui.bouton_chromatique.clicked.connect(lambda : bruit_chromatique(image, self.noise_ecart_type, self))
             self.ui.bouton_deja_bruitee.clicked.connect(lambda : deja_bruitee(image, self))
 
+            self.ui.frame_metriques.setVisible(False)
 
 
 if __name__ == "__main__":
