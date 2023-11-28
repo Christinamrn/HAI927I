@@ -338,12 +338,13 @@ class MainWindow(QMainWindow):
         #options |= QFileDialog.DontUseNativeDialog
         if(mode == 1):
             mode_nom = "bruitée"
-        else:
+        elif(mode == 2):
             mode_nom = "débruitée"
+
         file_name, _ = QFileDialog.getSaveFileName(self, "Enregistrer l'image " + mode_nom, self.ImageIn_path, "Images (*.jpg)", options=options)
 
         if file_name:
-            self.image.save(file_name)
+            image.save(file_name)
             print(f"L'image a été enregistrée sous {file_name}")
 
     #---------------------

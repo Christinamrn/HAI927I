@@ -386,6 +386,7 @@ class Ui_MainWindow(object):
         self.tabWidget_cfg.setEnabled(True)
         self.tabWidget_cfg.setGeometry(QRect(10, 40, 600, 261))
         self.tabWidget_cfg.setAutoFillBackground(False)
+        self.tabWidget_cfg.setStyleSheet(u"")
         self.GenBruit = QWidget()
         self.GenBruit.setObjectName(u"GenBruit")
         self.gridLayoutWidget = QWidget(self.GenBruit)
@@ -502,7 +503,7 @@ class Ui_MainWindow(object):
         self.label_papier.setGeometry(QRect(10, 150, 251, 61))
         self.gridLayoutWidget_2 = QWidget(self.Filtres)
         self.gridLayoutWidget_2.setObjectName(u"gridLayoutWidget_2")
-        self.gridLayoutWidget_2.setGeometry(QRect(270, 10, 321, 152))
+        self.gridLayoutWidget_2.setGeometry(QRect(270, 10, 321, 176))
         self.gLay_options_filter = QGridLayout(self.gridLayoutWidget_2)
         self.gLay_options_filter.setObjectName(u"gLay_options_filter")
         self.gLay_options_filter.setSizeConstraint(QLayout.SetDefaultConstraint)
@@ -798,7 +799,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget_cfg.setCurrentIndex(1)
+        self.tabWidget_cfg.setCurrentIndex(0)
         self.tabWidget_Mesure.setCurrentIndex(0)
 
 
@@ -845,7 +846,7 @@ class Ui_MainWindow(object):
         self.label_var_couleur.setText(QCoreApplication.translate("MainWindow", u"Variance couleur :", None))
         self.tabWidget_cfg.setTabText(self.tabWidget_cfg.indexOf(self.Filtres), QCoreApplication.translate("MainWindow", u"Filtrages", None))
         self.bouton_MPRNet.setText(QCoreApplication.translate("MainWindow", u"MPRNet", None))
-        self.tabWidget_cfg.setTabText(self.tabWidget_cfg.indexOf(self.ReseauNeurone), QCoreApplication.translate("MainWindow", u"R\u00e9seau de neurone", None))
+        self.tabWidget_cfg.setTabText(self.tabWidget_cfg.indexOf(self.ReseauNeurone), QCoreApplication.translate("MainWindow", u"R\u00e9seau de neurones", None))
         self.label_barretaches_background_6.setText("")
         self.label_textebarre_7.setText(QCoreApplication.translate("MainWindow", u"Outils", None))
         self.label_background_3.setText("")

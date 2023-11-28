@@ -970,8 +970,11 @@ background-color: #d46464;</string>
      <property name="autoFillBackground">
       <bool>false</bool>
      </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="GenBruit">
       <attribute name="title">
@@ -1176,7 +1179,7 @@ background-color: #d46464;</string>
          <x>270</x>
          <y>10</y>
          <width>321</width>
-         <height>152</height>
+         <height>176</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gLay_options_filter">
@@ -1290,7 +1293,7 @@ background-color: #d46464;</string>
      </widget>
      <widget class="QWidget" name="ReseauNeurone">
       <attribute name="title">
-       <string>Réseau de neurone</string>
+       <string>Réseau de neurones</string>
       </attribute>
       <widget class="QPushButton" name="bouton_MPRNet">
        <property name="geometry">
