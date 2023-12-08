@@ -67,4 +67,5 @@ def with_MPRNet(image_path, MainWindow):
     chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
     save_img(chemin_dossier_temp, restored)
     MainWindow.affichageImageOut()
+    MainWindow.ext_filtre = "MPRNet"
 

@@ -30,7 +30,8 @@ def bruit_chromatique(image, ecart_type, MainWindow):
             image.putpixel((x, y), new_pixel)
     enregistrerImageTmpNoisy(image)
     MainWindow.affichageImageNoisy()
-
+    MainWindow.ext_bruit = f"b_chromatique_{ecart_type}"
+    MainWindow.ImageIsAlreadyNoisy = False
 
 #Bruit gaussien
 def bruit_gaussien(image, ecart_type, MainWindow):
@@ -57,7 +58,8 @@ def bruit_gaussien(image, ecart_type, MainWindow):
                 image.putpixel((x, y), new_pixel)
     enregistrerImageTmpNoisy(image)
     MainWindow.affichageImageNoisy()
-
+    MainWindow.ext_bruit = f"b_gaussien_{ecart_type}"
+    MainWindow.ImageIsAlreadyNoisy = False
 
 #Bruit poivre et sel
 def bruit_poivre_et_sel(image, densite, MainWindow):
@@ -82,9 +84,12 @@ def bruit_poivre_et_sel(image, densite, MainWindow):
                     #image.putpixel((x, y), new_pixel)
     enregistrerImageTmpNoisy(image)
     MainWindow.affichageImageNoisy()
+    MainWindow.ext_bruit = f"b_poivreetsel_{densite}"
+    MainWindow.ImageIsAlreadyNoisy = False
 
 #Déjà bruitée
 def deja_bruitee(image, MainWindow):
     enregistrerImageTmpNoisy(image)
     MainWindow.ImageIsAlreadyNoisy = True
     MainWindow.affichageImageNoisy()
+    MainWindow.ext_bruit = "dejabruitee"

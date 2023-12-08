@@ -43,6 +43,10 @@ class MainWindow(QMainWindow):
         #self.chemin_dossier_temp = None
         #self.chemin_dossier_temp_noisy = None
 
+        #Configuration nom des fichiers à sauvegarder
+        self.ext_bruit = None
+        self.ext_filtre = None
+
         #Variables Booléennes
         self.ImageInIsSet = False
         self.ImageNdg = False
@@ -164,6 +168,9 @@ class MainWindow(QMainWindow):
         if(self.ImageIsAlreadyNoisy):
             self.ui.frame_ImgIn.setVisible(False)
             self.ui.frame_ImgIn_background.setVisible(False)
+        else :
+            self.ui.frame_ImgIn.setVisible(True)
+            self.ui.frame_ImgIn_background.setVisible(True)
         chemin_dossier_temp_noisy = tempfile.gettempdir() + "\ImgChristalTmpNoisy.jpg"
         ImgNoisy = QImage(chemin_dossier_temp_noisy)
         largeur_ImgNoisy = ImgNoisy.width()
@@ -307,18 +314,24 @@ class MainWindow(QMainWindow):
     def valider_filtres(self, image, choix):
         if choix == 1:
             filtre_gaussien(image, self.filter_radius, self)
+            self.ext_filtre = f"f_gaussien_{self.filter_radius}"
         elif choix == 2:
             filtre_bilateral(image.filename, self.filter_diameter, self.filter_var_couleur, self.filter_var_spatiale, self)
+            self.ext_filtre = f"f_bilateral_{self.filter_diameter}_{self.filter_var_couleur}_{self.filter_var_spatiale}"
         elif choix == 3:
             filtre_moyenneur(image, self.filter_radius, self)
+            self.ext_filtre = f"f_moyenneur_{self.filter_radius}"
         elif choix == 4:
             filtre_median(image, self.filter_taille, self)
+            self.ext_filtre = f"f_median_{self.filter_taille}"
         elif choix == 5:
             chemin_dossier_temp_choix5 = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
             imagetemp_choix5 = ouvrirImageIn(chemin_dossier_temp_choix5)
             filtre_laplacien(imagetemp_choix5, self)
+            self.ext_filtre += "_f_laplacien"
         elif choix == 6:
             filtre_poissonDN(image.filename, self)
+            self.ext_filtre = "f_EPDFP"
 
 #        #Update de la mesure de l'image de base avec l'image de fin
 #        self.update_metric(image)
@@ -341,15 +354,19 @@ class MainWindow(QMainWindow):
     def sauvegardeImage(self, image, mode):
         options = QFileDialog.Options()
         #options |= QFileDialog.DontUseNativeDialog
+        base_name = os.path.splitext(os.path.basename(self.ImageIn_path))[0]
         if(mode == 1):
             mode_nom = "bruitée"
+            setup_file_name = f"{base_name}_{self.ext_bruit}"
             #mettre chemin
             #image.open(self.chemin_dossier_tmp_noisy)
         elif(mode == 2):
             mode_nom = "débruitée"
+            setup_file_name = f"{base_name}_{self.ext_bruit}_{self.ext_filtre}"
+
             #mettre chemin
             #image.open(self.chemin_dossier_temp)
-        file_name, _ = QFileDialog.getSaveFileName(self, "Enregistrer l'image " + mode_nom, self.ImageIn_path, "Images (*.jpg)", options=options)
+        file_name, _ = QFileDialog.getSaveFileName(self, "Enregistrer l'image " + mode_nom, os.path.join(self.ImageIn_path, f"{setup_file_name}.jpg"), "Images (*.jpg)", options=options)
 
         if file_name:
             image.save(file_name)

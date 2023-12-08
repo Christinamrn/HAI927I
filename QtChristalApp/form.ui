@@ -1145,7 +1145,7 @@ background-color: #d46464;</string>
           <item>
            <widget class="QRadioButton" name="radio_papier">
             <property name="text">
-             <string>Filtrage Papier*</string>
+             <string>Filtrage EPDFP*</string>
             </property>
            </widget>
           </item>
@@ -1170,7 +1170,7 @@ background-color: #d46464;</string>
         </rect>
        </property>
        <property name="text">
-        <string>*Filtrage Papier : méthode implémentée</string>
+        <string>*Efficient Poisson Denoising for Photography</string>
        </property>
       </widget>
       <widget class="QWidget" name="gridLayoutWidget_2">
@@ -1299,7 +1299,7 @@ background-color: #d46464;</string>
        <property name="geometry">
         <rect>
          <x>260</x>
-         <y>80</y>
+         <y>100</y>
          <width>75</width>
          <height>24</height>
         </rect>
@@ -1631,7 +1631,7 @@ background-color: #d46464;</string>
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <property name="elideMode">
       <enum>Qt::ElideNone</enum>
@@ -1702,7 +1702,7 @@ background-color: #d46464;</string>
       <widget class="QLabel" name="label_SSIM">
        <property name="geometry">
         <rect>
-         <x>130</x>
+         <x>120</x>
          <y>30</y>
          <width>49</width>
          <height>21</height>
