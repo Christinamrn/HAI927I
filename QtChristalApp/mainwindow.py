@@ -2,6 +2,7 @@
 import sys
 import os
 import cv2
+import tempfile
 
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QFileDialog, QDialog
 from PySide6.QtGui import QPixmap, QImage, QTransform
@@ -37,6 +38,10 @@ class MainWindow(QMainWindow):
         #Image origine
         self.ImageIn = None
         self.ImageIn_path = None
+
+        #Chemin Images Temporaires
+        #self.chemin_dossier_temp = None
+        #self.chemin_dossier_temp_noisy = None
 
         #Variables Booléennes
         self.ImageInIsSet = False
@@ -159,8 +164,8 @@ class MainWindow(QMainWindow):
         if(self.ImageIsAlreadyNoisy):
             self.ui.frame_ImgIn.setVisible(False)
             self.ui.frame_ImgIn_background.setVisible(False)
-        chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmpNoisy.jpg"
-        ImgNoisy = QImage(chemin_dossier_temp)
+        chemin_dossier_temp_noisy = tempfile.gettempdir() + "\ImgChristalTmpNoisy.jpg"
+        ImgNoisy = QImage(chemin_dossier_temp_noisy)
         largeur_ImgNoisy = ImgNoisy.width()
         hauteur_ImgNoisy = ImgNoisy.height()
         if largeur_ImgNoisy > hauteur_ImgNoisy :
@@ -172,7 +177,7 @@ class MainWindow(QMainWindow):
         self.ui.frame_ImgNoisy_background.setVisible(True)
         self.ui.frame_ImgNoisy.setVisible(True)
 
-        image = ouvrirImageIn(chemin_dossier_temp)
+        image = ouvrirImageIn(chemin_dossier_temp_noisy)
 
         #Lien entre les boutons liés à "image" et les fonctions de filtrage
         self.ui.tabWidget_cfg.setTabEnabled(1, True)
@@ -216,7 +221,7 @@ class MainWindow(QMainWindow):
         self.ui.frame_ImgOut_background.setVisible(True)
         self.ui.frame_ImgOut.setVisible(True)
 
-        image = ouvrirImageIn(chemin_dossier_temp)
+        image_noisy = ouvrirImageIn(chemin_dossier_temp)
 
         if self.ImageIsFiltered == True: #Affichage Laplacien seulement si l'image a été filtrée une première fois par un autre filtrage
             self.ui.radio_laplacien.setEnabled(True)
@@ -226,7 +231,7 @@ class MainWindow(QMainWindow):
         self.update_metric(self.ImageIn)
         self.ui.tabWidget_Mesure.setVisible(True)
 
-        self.ui.bouton_save_ImgOut.clicked.connect(lambda : self.sauvegardeImage(image, 2))
+        self.ui.bouton_save_ImgOut.clicked.connect(lambda : self.sauvegardeImage(image_noisy, 2))
 
 
     # GENERATEURS BRUIT
@@ -309,9 +314,9 @@ class MainWindow(QMainWindow):
         elif choix == 4:
             filtre_median(image, self.filter_taille, self)
         elif choix == 5:
-            chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
-            imagetemp = ouvrirImageIn(chemin_dossier_temp)
-            filtre_laplacien(imagetemp, self)
+            chemin_dossier_temp_choix5 = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
+            imagetemp_choix5 = ouvrirImageIn(chemin_dossier_temp_choix5)
+            filtre_laplacien(imagetemp_choix5, self)
         elif choix == 6:
             filtre_poissonDN(image.filename, self)
 
@@ -338,9 +343,12 @@ class MainWindow(QMainWindow):
         #options |= QFileDialog.DontUseNativeDialog
         if(mode == 1):
             mode_nom = "bruitée"
+            #mettre chemin
+            #image.open(self.chemin_dossier_tmp_noisy)
         elif(mode == 2):
             mode_nom = "débruitée"
-
+            #mettre chemin
+            #image.open(self.chemin_dossier_temp)
         file_name, _ = QFileDialog.getSaveFileName(self, "Enregistrer l'image " + mode_nom, self.ImageIn_path, "Images (*.jpg)", options=options)
 
         if file_name:
