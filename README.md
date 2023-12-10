@@ -11,7 +11,7 @@
 * [Compte rendu n°4](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Comptes%20Rendus/%5BHAI927I%5D%20Christal%20-%20CR4.pdf)
 * [Compte rendu n°5](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Comptes%20Rendus/%5BHAI927I%5D%20Christal%20-%20CR5.pdf)
 * [Compte rendu n°6](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Comptes%20Rendus/%5BHAI927I%5D%20Christal%20-%20CR6.pdf)
-* [Compte rendu n°7 - Poster scientifique]([https://github.com/Christinamrn/HAI927I-Christal/blob/main/Comptes%20Rendus/%5BHAI927I%5D%20Christal%20-%20CR6.pdf](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Poster/HAI927I%20-%20Christal%20-%20Poster%20A1.png))
+* [Compte rendu n°7 - Poster scientifique](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Poster/HAI927I%20-%20Christal%20-%20Poster%20A1.png)
 
 ## Fonctionnement du git ⚙️
 Voici comment est organisé le projet avec ses différents dossiers :
