@@ -66,7 +66,10 @@ class MainWindow(QMainWindow):
         self.filter_var_spatiale = 75
 
         self.metric_PSNR = None
+        self.metric_SNR = None
         self.metric_SSIM = None
+        self.metric_RMSE = None
+        self.metric_BRISQUE = None
 
         #Initialisation params
         # OUTILS BRUITS/FILTRES
@@ -184,7 +187,7 @@ class MainWindow(QMainWindow):
         self.ui.frame_ImgNoisy_background.setVisible(True)
         self.ui.frame_ImgNoisy.setVisible(True)
 
-        image = ouvrirImageIn(chemin_dossier_temp_noisy)
+        image_n = Image.open(chemin_dossier_temp_noisy)
 
         #Lien entre les boutons liés à "image" et les fonctions de filtrage
         self.ui.tabWidget_cfg.setTabEnabled(1, True)
@@ -197,11 +200,11 @@ class MainWindow(QMainWindow):
         self.ui.radio_laplacien.setEnabled(False)
         self.ui.radio_papier.toggled.connect(lambda : self.set_choix_filtre(6))
 
-        self.ui.bouton_valider.clicked.connect(lambda : self.valider_filtres(image, self.choix_filtre))
+        self.ui.bouton_valider.clicked.connect(lambda : self.valider_filtres(image_n, self.choix_filtre))
 
-        self.ui.bouton_MPRNet.clicked.connect(lambda : with_MPRNet(image.filename, self))
+        self.ui.bouton_MPRNet.clicked.connect(lambda : with_MPRNet(image_n.filename, self))
 
-        self.ui.bouton_save_ImgNoisy.clicked.connect(lambda : self.sauvegardeImage(image, 1))
+        self.ui.bouton_save_ImgNoisy.clicked.connect(lambda : self.sauvegardeImage(image_n, 1))
 
         self.ui.frame_ImgOut_background.setVisible(False)
         self.ui.frame_ImgOut.setVisible(False)
@@ -228,7 +231,7 @@ class MainWindow(QMainWindow):
         self.ui.frame_ImgOut_background.setVisible(True)
         self.ui.frame_ImgOut.setVisible(True)
 
-        image_noisy = ouvrirImageIn(chemin_dossier_temp)
+        image_denoise = Image.open(chemin_dossier_temp)
 
         if self.ImageIsFiltered == True: #Affichage Laplacien seulement si l'image a été filtrée une première fois par un autre filtrage
             self.ui.radio_laplacien.setEnabled(True)
@@ -238,7 +241,7 @@ class MainWindow(QMainWindow):
         self.update_metric(self.ImageIn)
         self.ui.tabWidget_Mesure.setVisible(True)
 
-        self.ui.bouton_save_ImgOut.clicked.connect(lambda : self.sauvegardeImage(image_noisy, 2))
+        self.ui.bouton_save_ImgOut.clicked.connect(lambda : self.sauvegardeImage(image_denoise, 2))
 
 
     # GENERATEURS BRUIT
@@ -311,18 +314,18 @@ class MainWindow(QMainWindow):
         self.ui.label_var_spatiale.setText(f"Variance spatiale : {value}")
         self.ui.bouton_valider.click()
 
-    def valider_filtres(self, image, choix):
+    def valider_filtres(self, image_to_filter, choix):
         if choix == 1:
-            filtre_gaussien(image, self.filter_radius, self)
+            filtre_gaussien(image_to_filter, self.filter_radius, self)
             self.ext_filtre = f"f_gaussien_{self.filter_radius}"
         elif choix == 2:
-            filtre_bilateral(image.filename, self.filter_diameter, self.filter_var_couleur, self.filter_var_spatiale, self)
+            filtre_bilateral(image_to_filter.filename, self.filter_diameter, self.filter_var_couleur, self.filter_var_spatiale, self)
             self.ext_filtre = f"f_bilateral_{self.filter_diameter}_{self.filter_var_couleur}_{self.filter_var_spatiale}"
         elif choix == 3:
-            filtre_moyenneur(image, self.filter_radius, self)
+            filtre_moyenneur(image_to_filter, self.filter_radius, self)
             self.ext_filtre = f"f_moyenneur_{self.filter_radius}"
         elif choix == 4:
-            filtre_median(image, self.filter_taille, self)
+            filtre_median(image_to_filter, self.filter_taille, self)
             self.ext_filtre = f"f_median_{self.filter_taille}"
         elif choix == 5:
             chemin_dossier_temp_choix5 = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
@@ -330,7 +333,7 @@ class MainWindow(QMainWindow):
             filtre_laplacien(imagetemp_choix5, self)
             self.ext_filtre += "_f_laplacien"
         elif choix == 6:
-            filtre_poissonDN(image.filename, self)
+            filtre_poissonDN(image_to_filter.filename, self)
             self.ext_filtre = "f_EPDFP"
 
 #        #Update de la mesure de l'image de base avec l'image de fin
@@ -341,23 +344,31 @@ class MainWindow(QMainWindow):
     # MESURES
     #---------
 
-    def update_metric(self, image):
-        self.metric_PSNR = calculPSNR(image)
+    def update_metric(self, image_metric):
+        self.metric_PSNR = calculPSNR(image_metric)
         self.ui.label_PSNR.setText(f"{self.metric_PSNR:.2f}")
-        self.metric_SSIM = calculSSIM(image)
+        self.metric_SNR = calculSNR(image_metric)
+        self.ui.label_SNR.setText(f"{self.metric_SNR:.2f}")
+        self.metric_SSIM = calculSSIM(image_metric)
         self.ui.label_SSIM.setText(f"{self.metric_SSIM:.2f}")
+        self.metric_RMSE = calculRMSE(image_metric)
+        self.ui.label_RMSE.setText(f"{self.metric_RMSE:.2f}")
+        self.metric_BRISQUE = calculBRISQUE()
+        self.ui.label_BRISQUE.setText(f"{self.metric_BRISQUE:.2f}")
 
     #------------------
     # SAUVEGARDE images
     #------------------
 
-    def sauvegardeImage(self, image, mode):
+    def sauvegardeImage(self, image_to_save, mode):
         options = QFileDialog.Options()
         #options |= QFileDialog.DontUseNativeDialog
         base_name = os.path.splitext(os.path.basename(self.ImageIn_path))[0]
+        setup_file_name = None
         if(mode == 1):
             mode_nom = "bruitée"
             setup_file_name = f"{base_name}_{self.ext_bruit}"
+
             #mettre chemin
             #image.open(self.chemin_dossier_tmp_noisy)
         elif(mode == 2):
@@ -369,8 +380,12 @@ class MainWindow(QMainWindow):
         file_name, _ = QFileDialog.getSaveFileName(self, "Enregistrer l'image " + mode_nom, os.path.join(self.ImageIn_path, f"{setup_file_name}.jpg"), "Images (*.jpg)", options=options)
 
         if file_name:
-            image.save(file_name)
+            #print(f"Type de l'objet image : {type(image)}")
+            image_to_save.save(file_name)
             print(f"L'image a été enregistrée sous {file_name}")
+        else:
+            self.sender().done(1)
+            print("Opération annulée par l'utilisateur.")
 
     #---------------------
     #   OUVERTURE Image In

@@ -15,22 +15,27 @@ def enregistrerImageOut(image, imageout_path):
     image.save(imageout_path)
 
 def enregistrerImageTmp(image):
-    chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
+    #chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
+    chemin_dossier_temp = os.path.join(tempfile.gettempdir(), "ImgChristalTmp.jpg")
     print(chemin_dossier_temp)
     image.save(chemin_dossier_temp)
 
+
 def enregistrerImageTmpCV(image):
-    chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
+    #chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
+    chemin_dossier_temp = os.path.join(tempfile.gettempdir(), "ImgChristalTmp.jpg")
     print(chemin_dossier_temp)
     cv2.imwrite(chemin_dossier_temp, image)
 
 def enregistrerImageTmpNoisy(image):
-    chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmpNoisy.jpg"
+    #chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmpNoisy.jpg"
+    chemin_dossier_temp = os.path.join(tempfile.gettempdir(), "ImgChristalTmpNoisy.jpg")
     print(chemin_dossier_temp)
     image.save(chemin_dossier_temp)
 
 def enregistrerImageTmpNoisyCV(image):
-    chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmpNoisy.jpg"
+    #chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmpNoisy.jpg"
+    chemin_dossier_temp = os.path.join(tempfile.gettempdir(), "ImgChristalTmpNoisy.jpg")
     print(chemin_dossier_temp)
     cv2.imwrite(chemin_dossier_temp, image)
 

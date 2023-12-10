@@ -3,11 +3,13 @@
 from PIL import Image
 import numpy as np
 import tempfile
+import cv2
+import math
 from skimage.metrics import structural_similarity as ssim
 from skimage import img_as_float
 from skimage.transform import resize
-import cv2
 from imageSettings import IsNdg
+from brisque import BRISQUE
 
 
 def calculPSNR(image):
@@ -68,3 +70,53 @@ def calculSSIM(image):
 
     return np.mean(ssim_index)
 
+def calculBRISQUE():
+    chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
+    image = Image.open(chemin_dossier_temp)
+    image = np.array(image).astype(np.float64)
+    obj = BRISQUE(url=False)
+    return obj.score(image)
+
+def calculRMSE(image):
+    chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
+    imageout = Image.open(chemin_dossier_temp)
+    image_arr = np.array(image).astype(np.float64)
+    imageout_arr = np.array(imageout).astype(np.float64)
+
+    if IsNdg(image) == True:
+
+        mse = np.mean((image_arr - imageout_arr) ** 2)
+        RMSE = math.sqrt(mse)
+        return RMSE
+
+    else :
+        mse_r = np.mean((image_arr[:, :, 0] - imageout_arr[:, :, 0]) ** 2)
+        mse_g = np.mean((image_arr[:, :, 1] - imageout_arr[:, :, 1]) ** 2)
+        mse_b = np.mean((image_arr[:, :, 2] - imageout_arr[:, :, 2]) ** 2)
+
+        mse = (mse_r + mse_g + mse_b) / 3.0
+
+        RMSE = math.sqrt(mse)
+        return RMSE
+
+def calculSNR(image):
+    chemin_dossier_temp = tempfile.gettempdir() + "\ImgChristalTmp.jpg"
+    imageout = Image.open(chemin_dossier_temp)
+    image_arr = np.asarray(image)
+    imageout_arr = np.asarray(imageout)
+
+    image = image_arr.astype(np.float64)
+    imageout = imageout_arr.astype(np.float64)
+
+    signal_power_per_channel = np.sum(image**2, axis=(0, 1))
+
+    noise = image - imageout
+    noise_power_per_channel = np.sum(noise**2, axis=(0, 1))
+
+    noise_power_per_channel[noise_power_per_channel < 1e-10] = 1e-10
+
+    snr_per_channel = 10 * np.log10(signal_power_per_channel / noise_power_per_channel)
+
+    average_snr = np.mean(snr_per_channel)
+
+    return average_snr
