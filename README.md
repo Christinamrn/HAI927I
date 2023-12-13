@@ -39,11 +39,9 @@ Voici comment est organisé le projet avec ses différents dossiers :
 ## Efficient Poisson Denoising for Photography
 Nous avons implémenté le papier [(lien)](https://ieeexplore.ieee.org/document/5414042) dans notre code.
 
-## Poster scientifique 🖼️
-![Poster](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Poster/HAI927I%20-%20Christal%20-%20Poster%20A1%20-%20version%20finale.png)
-
-
 ## MPRNet 🌐
 Multi-Stage Progressive Image Restoration (CVPR 2021) *Syed Waqas Zamir, Aditya Arora, Salman Khan,Munawar Hayat, Fahad Shahbaz Khan, Ming-Hsuan Yang and Ling Shao* [Paper](https://arxiv.org/pdf/2102.02808.pdf)  | [Code](https://github.com/swz30/MPRNet)
 
 Nous utilisons MPRNet dans notre code avec les modèles pré-entraînés disponibles sur le github mentionné.
+
+
