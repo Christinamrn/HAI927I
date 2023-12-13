@@ -862,8 +862,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget_cfg.setCurrentIndex(2)
-        self.tabWidget_Mesure.setCurrentIndex(4)
+        self.tabWidget_cfg.setCurrentIndex(0)
+        self.tabWidget_Mesure.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
