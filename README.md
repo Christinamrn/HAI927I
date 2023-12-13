@@ -1,7 +1,7 @@
 # HAI927I - Christal
 
 ## Présentation du projet 💻
-Un projet de Master 2 Informatique par Christina et Solal
+Un projet de Master 2 Informatique de débruitage d'image par Christina et Solal
 
 * [Pourquoi nous ?](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Pr%C3%A9sentations/HAI927I%20-%20Choix%20sujet%20-%20D%C3%A9bruitage.pdf)
 
