@@ -1,6 +1,7 @@
 # HAI927I - Christal
 
 ## Présentation du projet 💻
+Un projet de Master 2 Informatique par Christina et Solal
 
 * [Pourquoi nous ?](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Pr%C3%A9sentations/HAI927I%20-%20Choix%20sujet%20-%20D%C3%A9bruitage.pdf)
 
@@ -12,6 +13,10 @@
 * [Compte rendu n°5](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Comptes%20Rendus/%5BHAI927I%5D%20Christal%20-%20CR5.pdf)
 * [Compte rendu n°6](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Comptes%20Rendus/%5BHAI927I%5D%20Christal%20-%20CR6.pdf)
 * [Compte rendu n°7 - Poster scientifique](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Poster/HAI927I%20-%20Christal%20-%20Poster%20A1.png)
+* [Compte rendu n°](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Pr%C3%A9sentations/HAI927I%20-%20Christal%20-%20Pr%C3%A9sentation%20finale.pdf)
+
+## Vidéo démo
+[lien mp4](https://github.com/Christinamrn/HAI927I-Christal/blob/main/Vid%C3%A9o/D%C3%A9monstration.mp4)
 
 ## Fonctionnement du git ⚙️
 Voici comment est organisé le projet avec ses différents dossiers :
@@ -29,7 +34,7 @@ Voici comment est organisé le projet avec ses différents dossiers :
 * 📁 **metrics** regroupe les fonctions calculant les métriques.
 
 ## Application Qt 💻
-* 📁 **QtChristalApp** est le dossier contenant l'application en cours de développement. Celle-ci reprend les concepts vu précédemment ainsi que les prochains ajouts sur une interface graphique. Celle-ci est destinée à un utilisateur lambda qui souhaiterait débruiter son image simplement par le biais de notre application. Nous utilisons QtCreator en version Python (QtPy).
+* 📁 **QtChristalApp** est le dossier contenant l'application en cours de développement. Celle-ci reprend les concepts vus ~~précédemment ainsi que les prochains ajouts~~ sur une interface graphique. Celle-ci est destinée à un utilisateur lambda qui souhaiterait débruiter son image simplement par le biais de notre application. Nous utilisons QtCreator en version Python (QtPy).
 
 ## Efficient Poisson Denoising for Photography
 Nous avons implémenté le papier [(lien)](https://ieeexplore.ieee.org/document/5414042) dans notre code.
